@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimun-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Intro_1.62</title>
+
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+
+  <script src="js/jquery.1.12.4.min.js" type="text/javascript"></script>
+  <script src="js/script_normal.js" type="text/javascript"></script> <!-- 기본 자바스크립트 -->
+  <script src="js/script_resize.js" type="text/javascript"></script> <!-- 반응형 자바스크립트 -->
+
+  <link href="https://fonts.googleapis.com/css?family=Bungee+Hairline&display=swap" rel="stylesheet"> <!-- 기본 웹 폰트[Bungee Hairline] -->
+</head>
+<body>
+  <ul id="back">
+    <li class="effect"></li> <!-- 타일 컨테이너 박스 -->
+
+    <!-- 타일 클릭 후 타일이 뒤집어 질 때 아직 뒤집어지지 않은 타일에 마우스를 올려도 반응하지 않도록 레이어 층을 생성 /
+    또 wall과 wall_sub가 번갈아 가며 배경색을 바꿔줌 -->
+    <li class="wall"></li>
+    <li class="wall_sub"></li>
+
+    <li class="wall_next"></li> <!-- 더블클릭하여 Intro에서 벗어날 때 페이드인되는 흰색 배경의 레이어 -->
+
+    <!-- 비/별똥별 같이 움직이는 선 -->
+    <li class="raintoup"></li> <!-- 아래에서 위 방향 -->
+    <li class="raintodown"></li> <!-- 위에서 아래 방향 -->
+    <li class="raintoleft"></li> <!-- 오른쪽에서 왼쪽 방향 -->
+    <li class="raintoright"></li> <!-- 왼쪽에서 오른쪽 방향 -->
+
+    <!-- 타일이 뒤집어지고 나서 나타나는 타이틀박스 -->
+    <li class="title_box">
+      <ul class="title">
+        <li class="word">G <br class="b_767">O <br class="b_767">N <br class="b_767">G <br class="b_1279">Z <br class="b_767">O <br class="b_767">N <br class="b_767">E </li>
+
+        <!-- 왼쪽 위 테두리 -->
+        <li class="up_lt"></li> <!-- 위로 길어지는 테두리 -->
+        <li class="right_lt"></li> <!-- 오른쪽으로 길어지는 테두리 -->
+        <li class="down_lt"></li> <!-- 아래로 길어지는 테두리 -->
+        <li class="left_lt"></li> <!-- 왼쪽으로 길어지는 테두리 -->
+
+        <!-- 오른쪽 아래 테두리 -->
+        <li class="up_br"></li> <!-- 위로 길어지는 테두리 -->
+        <li class="right_br"></li> <!-- 오른쪽으로 길어지는 테두리 -->
+        <li class="down_br"></li> <!-- 아래로 길어지는 테두리 -->
+        <li class="left_br"></li> <!-- 왼쪽으로 길어지는 테두리 -->
+      </ul>
+    </li>
+  </ul>
+  
+  <section class="cover"></section> <!-- 기본 배경 -->
+</body>
+</html>

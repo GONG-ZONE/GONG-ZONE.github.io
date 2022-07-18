@@ -1,0 +1,245 @@
+@charset "utf-8";
+
+::-webkit-scrollbar{ /* 스크롤바 제거 */
+  display:none;
+}
+
+*{
+  margin:0;
+  padding:0;
+  font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairline] */
+}
+
+ul,li{
+  list-style:none;
+}
+
+a{
+  text-decoration:none;
+  color:inherit;
+  display:block;
+}
+
+html, body, #back, .title_box{ /* .title 높이 주기 위함 */
+  height:100%;
+}
+
+body{
+  position:fixed;
+  z-index:-10;
+
+  cursor:none; /* 마우스 포인트 없애기 */
+}
+
+/* ---- 기본 박스 -------------------------------------------------- */
+#back{
+  position:fixed;
+  z-index:-2;
+  top:0; right:0; bottom:0; left:0;
+}
+
+
+/* ---- 배경 박스 -------------------------------------------------- */
+.wall{
+  position:fixed;
+  z-index:3;
+  top:0; right:0; bottom:0; left:0;
+  opacity:0;
+
+  display:none;
+}
+
+.wall_sub{
+  position:fixed;
+  z-index:3;
+  top:0; right:0; bottom:0; left:0;
+  opacity:0;
+
+  display:none;
+}
+
+.wall_next{
+  position:fixed;
+  z-index:3;
+  top:0; right:0; bottom:0; left:0;
+  opacity:0;
+  background-color:#fff;
+
+  display:none;
+}
+
+.cover{
+  position:fixed;
+  z-index:-5;
+  top:0; right:0; bottom:0; left:0;
+  background:black;
+}
+
+
+/* ---- 타일 박스 -------------------------------------------------- */
+.effect{
+  position:fixed;
+  z-index:1;
+  top:0; bottom:0; left:0;
+  right:-47px; /* 가장 오른쪽 타일이 공간이 부족해서 한 줄 밑으로 내려오지 않도록 하기 위함/타일 크기:48px */
+}
+
+.effect ul{ /* 타일이 뒤집어질때 생기는 공간에 마우스가 위치하면 mouseout효과가 먹는 것을 방지하기 위해 타일 위에 레이어를 형성 */
+  width:48px;
+  height:48px;
+  float:left;
+}
+
+.effect li{ /* 타일 박스 */
+  width:48px;
+  height:48px;
+  background:white;
+  float:left;
+  opacity:1;
+
+  /* -- copyright 서식 -- */
+  font-size:35px;
+  text-align:center;
+  line-height:48px;
+  color:#888;
+  font-weight:bold;
+}
+
+.title_box{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+
+/* ---- 타이틀 박스 -------------------------------------------------- */
+.title{
+  width:50%;
+  height:33%;
+  font-size:70px;
+  line-height:70px;
+  color:white;
+  text-align:center;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  position:relative;
+}
+
+.word{ /* 제이쿼리 페이드인 */
+  display:none;
+}
+
+.b_1279{ /* 반응형 768px - 1279px */
+  display:none;
+}
+
+.b_767{ /* 반응형 0 - 767px */
+  display:none;
+}
+
+
+/* ---- 타이틀 테두리 -------------------------------------------------- */
+.word~li{
+  position:absolute;
+  background:rgba(255,255,255,0.5);
+}
+
+.up_lt{width:1px; left:0; bottom:100%;}
+.down_lt{width:1px; left:0; top:0%;}
+.left_lt{height:1px; top:0; right:100%;}
+.right_lt{height:1px; top:0; left:0%;}
+.up_br{width:1px; right:0; bottom:0%;}
+.down_br{width:1px; right:0; top:100%;}
+.left_br{height:1px; bottom:0; right:0%;}
+.right_br{height:1px; bottom:0; left:100%;}
+
+
+/* ---- 비/별똥별 선 -------------------------------------------------- */
+.raintoup, .raintodown, .raintoleft, .raintoright{
+  position:fixed;
+  z-index:0;
+  height:100%;
+  left:0;
+  right:0;
+}
+
+.raintoup>div{ /* 아래에서 위 방향 */
+  position:fixed;
+  z-index:0;
+  width:1px;
+  background:#fff;
+  bottom:-50%;
+}
+
+.raintodown>div{/* 위에서 아래 방향 */
+  position:fixed;
+  z-index:0;
+  width:1px;
+  background:#fff;
+  top:-50%;
+}
+
+.raintoleft>div{ /* 오른쪽에서 왼쪽 방향 */
+  position:fixed;
+  z-index:0;
+  height:1px;
+  background:#fff;
+  right:-50%;
+}
+
+.raintoright>div{ /* 왼쪽에서 오른쪽 방향 */
+  position:fixed;
+  z-index:0;
+  height:1px;
+  background:#fff;
+  left:-50%;
+}
+
+
+/* ---- 반응형 -------------------------------------------------- */
+@media all and (max-width:1279px) {
+  .title{
+    width:33%;
+    font-size:60px;
+    line-height:60px;
+  }
+
+  .b_1279{
+    display:block;
+  }
+}
+
+@media all and (max-width:767px) {
+  .effect li{ /* copyright 서식 변경 */
+    line-height:24px;
+    font-size:18px;
+  }
+
+  .title{
+    height:70%;
+    font-size:50px;
+    line-height:50px;
+  }
+
+  .b_767{
+    display:block;
+  }
+}
+
+
+
+/* ---- addClass ---------------------------------------- */
+.open{
+  opacity:0!important;
+  transform:rotate3d(1,0,1,180deg);
+  transition:0.8s;
+}
+
+.close{
+  opacity:1;
+  transform:rotate3d(0,1,0,0deg);
+  transition:1.2s;
+}
