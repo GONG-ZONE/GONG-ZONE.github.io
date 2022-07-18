@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>select_search</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script>
+  $(document).ready(function(){
+    $(".search").on("click",fnc);
+    function fnc(){
+      var s = $(".text").val();
+      $("option").hide();
+      $("option:contains('"+ s +"')").show();
+    };
+  });
+  </script>
+
+  <style>
+    
+  </style>
+</head>
+<body>
+  <select>
+    <option selected>--</option>
+    <option>일</option>
+    <option>이</option>
+    <option>삼</option>
+    <option>사</option>
+    <option>오</option>
+    <option>육</option>
+    <option>칠</option>
+    <option>팔</option>
+    <option>구</option>
+    <option>십</option>
+    <option>십일</option>
+    <option>십이</option>
+    <option>십삼</option>
+    <option>십사</option>
+    <option>십오</option>
+    <option>십육</option>
+    <option>십칠</option>
+    <option>십팔</option>
+    <option>십구</option>
+    <option>이십</option>
+    <option>이십일</option>
+    <option>이십이</option>
+    <option>이십삼</option>
+  </select>
+
+  <input type="search" class="text">
+  <input type="button" value="search" class="search">
+</body>
+</html>
