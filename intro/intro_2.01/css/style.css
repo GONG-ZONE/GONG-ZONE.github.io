@@ -1,2 +1,21 @@
 @charset "UTF-8";
 
+* {margin:0; padding:0; font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairline] */}
+img {vertical-align:top;}
+ul, li {list-style:none;}
+
+html, head, body, #wrapper {height:100%;}
+html {cursor:none;}
+html::-webkit-scrollbar {display:none;}
+
+#mouse-effect {position:fixed; top:0; left:0;}
+#mouse-effect > ul {display:flex; height:48px;}
+#mouse-effect > ul > li {width:48px; height:48px;}
+
+#mouse-effect > ul > li > div {width:48px; height:48px; background-color:#fff; text-align:center; line-height:48px; font-size:35px; font-weight:bold; color:#666; transition-property:transform, opacity; transition-duration:1s;}
+
+#mouse-effect.vertical > ul > li > div {line-height:24px; font-size:16px;}
+
+#star-effect {width:100%; height:100%; background:#000;}
+
+.trans > div {transform:rotate3d(1,0,1,180deg); opacity:0;}
