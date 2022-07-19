@@ -17,7 +17,8 @@ const copyrightV = ['C<br>O','P<br>Y','R<br>I','G<br>H','T<br>','20<br>22','<br>
 const reservedV = ['A<br>L','L<br>','R<br>I','G<br>H','T<br>S','<br>R','E<br>S','E<br>R','V<br>E','D<br>',''];
 
 const horizontalError = ['TO','O&nbsp;&nbsp;&nbsp;','SM','AL','L&nbsp;&nbsp;&nbsp;','SC','RE','EN'];
-const verticalError = ['T<br>O','O<br>','S<br>M','A<br>L','L<br>','S<br>C','R<br>E','E<br>N'];
+const verticalError1 = ['T<br>O','O<br>','S<br>M','A<br>L','L<br>'];
+const verticalError2 = ['S<br>C','R<br>E','E<br>N'];
     
 let htmlText = '';
 
@@ -25,6 +26,7 @@ let htmlText = '';
     $(document).ready(function(){
         mouseEffectBack();
         mouseMove();
+        clickEffect();
     })
 
     $(window).resize(function(){
@@ -45,7 +47,7 @@ let htmlText = '';
         pixel.wrapWidth = 48*pixel.liCnt;
         pixel.wrapHeight = 48*pixel.ulCnt;
 
-        console.log(pixel);
+        // console.log(pixel);
 
         // 너비가 클 때
         if(pixel.liCnt >= pixel.ulCnt) {
@@ -154,7 +156,9 @@ let htmlText = '';
                     for(let c = 0 ; c < pixel.liCnt ; c++) {
                         htmlText += '<li data-row="' + r + '" data-col="' + c + '"><div>';
                         if(c == pixel.liHalf - 1) {
-                            htmlText += verticalError[r - (pixel.ulHalf - 4)]?verticalError[r - (pixel.ulHalf - 4)]:'';
+                            htmlText += verticalError1[r - (pixel.ulHalf - 2)]?verticalError1[r - (pixel.ulHalf - 2)]:'';
+                        } else if(c == pixel.liHalf) {
+                            htmlText += verticalError2[r - (pixel.ulHalf - 1)]?verticalError2[r - (pixel.ulHalf - 1)]:'';
                         }
                         htmlText += '</div></li>';
                     }
@@ -180,6 +184,35 @@ let htmlText = '';
                     thisList.removeClass('trans');
                 }
             },1200);
+        })
+    }
+
+    function clickEffect() {
+        $(document).on('click','#mouse-effect > ul > li',function(){
+            $(this).addClass('trans');
+
+            let count = 0;
+            let effect = setInterval(function(){
+
+                $('.trans:not(.ed)').each(function(i,o){
+                    $(this).addClass('ed');
+
+                    $(this).next().addClass('trans').end()
+                    .prev().addClass('trans');
+
+                    $(this).parent().next().children().eq(this.dataset.col).addClass('trans');
+                    $(this).parent().prev().children().eq(this.dataset.col).addClass('trans');
+                })
+                
+                if($('.trans:not(.ed)').length == 0) {
+                    count++;
+
+                    if(count > 20) {
+                        clearInterval(effect);
+                        $('#mouse-effect').remove();
+                    }
+                }
+            },50)
         })
     }
 }());
