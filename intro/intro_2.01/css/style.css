@@ -13,7 +13,7 @@ html {cursor:none;}
 html::-webkit-scrollbar {display:none;}
 body {font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairline] */}
 
-#mouse-effect {position:fixed; top:0; left:0;}
+#mouse-effect {position:fixed; z-index:1; top:0; left:0;}
 #mouse-effect > ul {display:flex; height:48px;}
 #mouse-effect > ul > li {width:48px; height:48px;}
 
@@ -21,6 +21,20 @@ body {font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairl
 
 #mouse-effect.vertical > ul > li > div {line-height:24px; font-size:16px;}
 
-#space-effect {width:100%; height:100%; background:#000;}
-
 .trans > div {transform:rotate3d(1,0,1,180deg); opacity:0;}
+
+#space-effect {display:flex; justify-content:center; align-items:center; width:100%; height:100%; background:#000;}
+#space-effect > h1 {display:flex; justify-content:center; align-items:center; position:relative; width:50vw; height:30vh;}
+#space-effect > h1 > span {line-height:5vw; font-size:5vw; font-weight:normal; color:#fff;}
+#space-effect > h1.portrait {flex-direction:column; width:30vw; height:70vh;}
+#space-effect > h1.portrait > span {line-height:5vh; font-size:5vh;}
+
+#space-effect > h1 > div {position:absolute; background-color:#fff; opacity:.3;}
+.left-top {right:50vw; bottom:30vh;}
+.right-bottom {top:30vh; left:50vw;}
+#space-effect > h1.portrait > .left-top {right:30vw; bottom:70vh;}
+#space-effect > h1.portrait > .right-bottom {top:70vh; left:30vw;}
+.left-top.vertical {top:0; left:-1px;}
+.left-top.horizontal {top:-1px; left:0;}
+.right-bottom.vertical {right:-1px; bottom:0;}
+.right-bottom.horizontal {right:0; bottom:-1px;}

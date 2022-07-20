@@ -1,5 +1,7 @@
 (function(){
     const pixel = {
+        status: true,
+
         winWidth: 0,
         winHeight: 0,
     
@@ -28,10 +30,12 @@
         mouseEffectBack();
         mouseMove();
         clickEffect();
+        titleResize();
     })
 
     $(window).resize(function(){
-        mouseEffectBack();
+        if(pixel.status) mouseEffectBack();
+        titleResize();
     })
     
     function mouseEffectBack() {
@@ -212,13 +216,144 @@
                     if($('.trans:not(.ed)').length == 0) {
                         count++;
 
-                        if(count > 20) {
+                        if(count > 1) {
                             clearInterval(effect);
                             $('#mouse-effect').remove();
+                            pixel.status = false;
+
+                            spaceEffect();
                         }   
                     }
                 },50)
             }
         })
+    }
+
+    /* ********************************************************* */
+    
+    function spaceEffect() {
+        typingEffect();
+        // lineEffect();
+    }
+
+    function typingEffect() {
+        let spaceEffect = document.getElementById('space-effect'),
+            word = spaceEffect.children[0].children,
+            count = 0;
+
+        const typing = setInterval(function(){
+            let thisWord = word[count],
+                character = thisWord.dataset.alphabet,
+                ascii = character.charCodeAt();
+
+            const randomTyping = setInterval(function(){
+                let randomCode = Math.floor(Math.random()*26) + 65;
+                thisWord.textContent = String.fromCharCode(randomCode);
+                if(ascii == randomCode) clearInterval(randomTyping);
+            },20)
+            
+            count++;
+            if(count >= word.length) {
+                clearInterval(typing);
+                lineEffect();
+            }
+        },200);
+
+        /* const typing = setInterval(function(){
+            let thisWord = word[count],
+                character = thisWord.dataset.alphabet,
+                ascii = character.charCodeAt();
+
+            let randomCode = Math.floor(Math.random()*26) + 65;
+            thisWord.textContent = String.fromCharCode(randomCode);
+            if(ascii == randomCode) {
+                count++;
+                if(count >= word.length) {
+                    clearInterval(typing);
+                    lineEffect();
+                }
+            }
+        },30) */
+    }
+
+    const line = {
+        topRight: {
+            top: '',
+            right: '',
+            bottom: '',
+            left: '',
+            transitionVertical: 0,
+            transitionHorizontal: 0,
+        },
+        rightBottom: {
+            top: '25vh',
+            right: '-5vw',
+            bottom: '-7vh',
+            left: '40vw',
+            transitionVertical: 1500,
+            transitionHorizontal: 3000,
+        },
+        bottomLeft: {
+            top: '',
+            right: '',
+            bottom: '',
+            left: '',
+            transitionVertical: 0,
+            transitionHorizontal: 0,
+        },
+        leftTop: {
+            top: '-12vh',
+            right: '30vw',
+            bottom: '25vh',
+            left: '-10vw',
+            transitionVertical: 2500,
+            transitionHorizontal: 4000,
+        },
+    }
+
+    function lineEffect() {
+        $('#space-effect > h1').append('<div class="left-top vertical"></div><div class="left-top horizontal"></div><div class="right-bottom vertical"></div><div class="right-bottom horizontal"></div>');
+
+        $('.right-bottom.vertical').animate({
+            top:line.rightBottom.top,
+            bottom:line.rightBottom.bottom
+        },line.rightBottom.transitionVertical);
+        $('.right-bottom.horizontal').animate({
+            right:line.rightBottom.right,
+            left:line.rightBottom.left
+        },line.rightBottom.transitionHorizontal);
+        $('.left-top.vertical').animate({
+            top: line.leftTop.top,
+            bottom: line.leftTop.bottom
+        },line.leftTop.transitionVertical);
+        $('.left-top.horizontal').animate({
+            right:line.leftTop.right,
+            left:line.leftTop.left
+        },line.leftTop.transitionHorizontal);
+    }
+
+    function titleResize() {
+        pixel.winWidth = window.innerWidth;
+        pixel.winHeight = window.innerHeight;
+        
+        line.rightBottom.top = '60vh';
+        line.rightBottom.right = '-5vw';
+        line.rightBottom.bottom = '-7vh';
+        line.rightBottom.left = '20vw';
+        line.rightBottom.transitionVertical = 1500;
+        line.rightBottom.transitionHorizontal = 3000;
+        
+        line.leftTop.top = '-12vh';
+        line.leftTop.right = '25vw';
+        line.leftTop.bottom = '55vh';
+        line.leftTop.left = '-10vw';
+        line.leftTop.transitionVertical = 2500;
+        line.leftTop.transitionHorizontal = 4000;
+
+        if(pixel.winWidth < pixel.winHeight) {
+            $('#space-effect > h1').addClass('portrait');
+        } else {
+            $('#space-effect > h1').removeClass('portrait');
+        }
     }
 }());
