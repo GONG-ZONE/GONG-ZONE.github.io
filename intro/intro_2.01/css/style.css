@@ -21,6 +21,6 @@ body {font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairl
 
 #mouse-effect.vertical > ul > li > div {line-height:24px; font-size:16px;}
 
-#star-effect {width:100%; height:100%; background:#000;}
+#space-effect {width:100%; height:100%; background:#000;}
 
 .trans > div {transform:rotate3d(1,0,1,180deg); opacity:0;}
