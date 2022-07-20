@@ -1,12 +1,17 @@
 @charset "UTF-8";
+@font-face {
+    font-family:'Bungee Hairline';
+    src:url('../font/BungeeHairline-Regular.ttf') format('truetype');
+}
 
-* {margin:0; padding:0; font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairline] */}
+* {margin:0; padding:0;}
 img {vertical-align:top;}
 ul, li {list-style:none;}
 
 html, head, body, #wrapper {height:100%;}
 html {cursor:none;}
 html::-webkit-scrollbar {display:none;}
+body {font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairline] */}
 
 #mouse-effect {position:fixed; top:0; left:0;}
 #mouse-effect > ul {display:flex; height:48px;}

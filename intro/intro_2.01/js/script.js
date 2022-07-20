@@ -1,28 +1,29 @@
-const pixel = {
-    winWidth: 0,
-    winHeight: 0,
-
-    ulCnt: 0,
-    liCnt: 0,
-    ulHalf: 0,
-    liHalf: 0,
-
-    wrapWidth: 0,
-    wrapHeight: 0,
-};
-
-const copyrightH = ['CO','PY','RI','GH','T&nbsp;&nbsp;&nbsp;','20','22','&nbsp;&nbsp;&nbsp;G','ON','GZ','ON','E&nbsp;&nbsp;&nbsp;'];
-const reservedH = ['','AL','L&nbsp;&nbsp;&nbsp;','RI','GH','TS','&nbsp;&nbsp;&nbsp;R','ES','ER','VE','D&nbsp;&nbsp;&nbsp;',''];
-const copyrightV = ['C<br>O','P<br>Y','R<br>I','G<br>H','T<br>','20<br>22','<br>G','O<br>N','G<br>Z','O<br>N','E<br>'];
-const reservedV = ['A<br>L','L<br>','R<br>I','G<br>H','T<br>S','<br>R','E<br>S','E<br>R','V<br>E','D<br>',''];
-
-const horizontalError = ['TO','O&nbsp;&nbsp;&nbsp;','SM','AL','L&nbsp;&nbsp;&nbsp;','SC','RE','EN'];
-const verticalError1 = ['T<br>O','O<br>','S<br>M','A<br>L','L<br>'];
-const verticalError2 = ['S<br>C','R<br>E','E<br>N'];
-    
-let htmlText = '';
-
 (function(){
+    const pixel = {
+        winWidth: 0,
+        winHeight: 0,
+    
+        ulCnt: 0,
+        liCnt: 0,
+        ulHalf: 0,
+        liHalf: 0,
+    
+        wrapWidth: 0,
+        wrapHeight: 0,
+    },
+    
+    copyrightH = ['CO','PY','RI','GH','T&nbsp;&nbsp;&nbsp;','20','22','&nbsp;&nbsp;&nbsp;G','ON','GZ','ON','E&nbsp;&nbsp;&nbsp;'],
+    reservedH = ['','AL','L&nbsp;&nbsp;&nbsp;','RI','GH','TS','&nbsp;&nbsp;&nbsp;R','ES','ER','VE','D&nbsp;&nbsp;&nbsp;',''],
+    copyrightV = ['C<br>O','P<br>Y','R<br>I','G<br>H','T<br>','20<br>22','<br>G','O<br>N','G<br>Z','O<br>N','E<br>'],
+    reservedV = ['A<br>L','L<br>','R<br>I','G<br>H','T<br>S','<br>R','E<br>S','E<br>R','V<br>E','D<br>',''],
+    
+    horizontalError = ['TO','O&nbsp;&nbsp;&nbsp;','SM','AL','L&nbsp;&nbsp;&nbsp;','SC','RE','EN'],
+    verticalError1 = ['T<br>O','O<br>','S<br>M','A<br>L','L<br>'],
+    verticalError2 = ['S<br>C','R<br>E','E<br>N'];
+        
+    let htmlText = '',
+        effect;
+
     $(document).ready(function(){
         mouseEffectBack();
         mouseMove();
@@ -171,48 +172,53 @@ let htmlText = '';
 
     function mouseMove() {
         $(document).on('mouseenter','#mouse-effect > ul > li',function(){
-            let thisList = $(this);
-            if(thisList.hasClass('trans')) {
-                thisList.addClass('stay');
-            } else {
-                thisList.addClass('trans');
-            }
-            setTimeout(function(){
-                if(thisList.hasClass('stay')) {
-                    thisList.removeClass('stay');
+            if(!effect) {
+                let thisList = $(this);
+                if(thisList.hasClass('trans')) {
+                    thisList.addClass('stay');
                 } else {
-                    thisList.removeClass('trans');
+                    thisList.addClass('trans');
                 }
-            },1200);
+                setTimeout(function(){
+                    if(thisList.hasClass('stay')) {
+                        thisList.removeClass('stay');
+                    } else {
+                        thisList.not('.ed').removeClass('trans');
+                    }
+                },1200);
+            }
         })
     }
 
     function clickEffect() {
         $(document).on('click','#mouse-effect > ul > li',function(){
-            $(this).addClass('trans');
+            if(!effect) {
+                $('.trans').removeClass('trans stay ed');
+                $(this).addClass('trans');
 
-            let count = 0;
-            let effect = setInterval(function(){
+                let count = 0;
+                effect = setInterval(function(){
 
-                $('.trans:not(.ed)').each(function(i,o){
-                    $(this).addClass('ed');
+                    $('.trans:not(.ed)').each(function(i,o){
+                        $(this).addClass('ed');
 
-                    $(this).next().addClass('trans').end()
-                    .prev().addClass('trans');
+                        $(this).next().addClass('trans').end()
+                        .prev().addClass('trans');
 
-                    $(this).parent().next().children().eq(this.dataset.col).addClass('trans');
-                    $(this).parent().prev().children().eq(this.dataset.col).addClass('trans');
-                })
-                
-                if($('.trans:not(.ed)').length == 0) {
-                    count++;
+                        $(this).parent().next().children().eq(this.dataset.col).addClass('trans');
+                        $(this).parent().prev().children().eq(this.dataset.col).addClass('trans');
+                    })
+                    
+                    if($('.trans:not(.ed)').length == 0) {
+                        count++;
 
-                    if(count > 20) {
-                        clearInterval(effect);
-                        $('#mouse-effect').remove();
+                        if(count > 20) {
+                            clearInterval(effect);
+                            $('#mouse-effect').remove();
+                        }   
                     }
-                }
-            },50)
+                },50)
+            }
         })
     }
 }());
