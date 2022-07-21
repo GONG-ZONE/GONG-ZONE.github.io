@@ -1,4 +1,72 @@
 (function(){
+    const config = {
+        star: {
+            length: {
+                custom: null,
+                min: 0,
+                max: 0,
+            },
+            opacity: {
+                custom: null,
+                min: 0,
+                max: 0,
+            },
+            narrow: {
+                custom: null,
+                min: 0,
+                max: 0,
+            },
+            interval: {
+                custom: null,
+                min: 0,
+                max: 0,
+            },
+            speed: {
+                custom: null,
+                min: 0,
+                max: 0,
+            },
+
+            init: function(key) {
+                if(!key || key == 'length') {
+                    this.length.custom = false;
+                    this.length.min = 10;
+                    this.length.max = 47;
+                }
+                if(!key || key == 'opacity') {
+                    this.opacity.custom = false;
+                    this.opacity.min = 0.1;
+                    this.opacity.max = 0.3;
+                }
+                if(!key || key == 'narrow') {
+                    this.narrow.custom = false;
+                    this.narrow.min = 1;
+                    this.narrow.max = 1;
+                }
+                if(!key || key == 'interval') {
+                    this.interval.custom = false;
+                    this.interval.min = 4000;
+                    this.interval.max = 8000;
+                }
+                if(!key || key == 'speed') {
+                    this.speed.custom = false;
+                    this.speed.min = 1000;
+                    this.speed.max = 6000;
+                }
+            },
+
+            control: function(data) {
+                for(i in data) {
+                    console.log(`${i} : ${data[i]}`);
+                }
+            }
+        },
+
+        init: function() {
+            this.star.init();
+        }
+    }
+
     const pixel = {
         status: true,
 
@@ -27,6 +95,7 @@
         effect;
 
     $(document).ready(function(){
+        config.init();
         mouseEffectBack();
         mouseMove();
         clickEffect();
@@ -221,6 +290,7 @@
                             $('#mouse-effect').remove();
                             pixel.status = false;
 
+                            configButton();
                             spaceEffect();
                         }   
                     }
@@ -230,6 +300,20 @@
     }
 
     /* ********************************************************* */
+
+    function configButton() {
+        const $spaceEffect = $('#space-effect'),
+            configButton = '<button id="config-button" type="button"><div></div><div></div><div></div><div></div></button>';
+        $spaceEffect.append(configButton);
+        $('#config-button').animate({height:50},2000,function(){
+            $(this).addClass('signal');
+        });
+
+        $(document).on('click','#config-button',function(){
+            $spaceEffect.append('<aside id="config-box"></aside>');
+            $('#config-box').stop().animate({height:200},1000,'linear');
+        })
+    }
     
     function spaceEffect() {
         typingEffect();
@@ -294,10 +378,10 @@
             line.leftTop.right =                      '29vw';
             line.leftTop.bottom =               '19vh';
                     
-            line.rightBottom.top =              '26vh';
-            line.rightBottom.left =        '37vw';
-            line.rightBottom.right = '-'+             '4vw';
-            line.rightBottom.bottom = '-'+      '2vh';
+            line.rightBottom.top =                                           '26vh';
+            line.rightBottom.left =                                    '37vw';
+            line.rightBottom.right = '-'+                                          '4vw';
+            line.rightBottom.bottom = '-'+                                   '2vh';
         } else {
             $('#space-effect > h1').addClass('portrait');
             
@@ -306,10 +390,10 @@
             line.leftTop.right =                      '20vw';
             line.leftTop.bottom =               '51vh';
                     
-            line.rightBottom.top =              '61vh';
-            line.rightBottom.left =        '17vw';
-            line.rightBottom.right = '-'+             '4vw';
-            line.rightBottom.bottom = '-'+      '7vh';
+            line.rightBottom.top =                                           '61vh';
+            line.rightBottom.left =                                    '17vw';
+            line.rightBottom.right = '-'+                                         '4vw';
+            line.rightBottom.bottom = '-'+                                   '7vh';
         }
 
         $('.left-top.vertical').css({
@@ -382,12 +466,13 @@
         star[to].direction = direction;
         star[to].from = from;
         star[to].to = to;
-        star[to].location = Math.floor(Math.random()*980)/10 + 1;
-        star[to].length = Math.floor(Math.random()*37) + 10;
-        star[to].opacity = Math.floor(Math.random()*50)/100 + 0.1; 
-        star[to].narrow = /* Math.floor(Math.random()*100) +  */1;
-        star[to].interval = Math.floor(Math.random()*4000) + 4000;
-        star[to].speed = Math.floor(Math.random()*5000) + 1000;
+        star[to].location = Math.floor(Math.random()*990)/10;
+
+        star[to].length = Math.floor(Math.random()*(config.star.length.max - config.star.length.min)) + config.star.length.min;
+        star[to].opacity = Math.floor(Math.random()*(config.star.opacity.max - config.star.opacity.min)*100)/100 + config.star.opacity.min; 
+        star[to].narrow = Math.floor(Math.random()*(config.star.narrow.max - config.star.narrow.min)) + config.star.narrow.min;
+        star[to].interval = Math.floor(Math.random()*(config.star.interval.max - config.star.interval.min)) + config.star.interval.min;
+        star[to].speed = Math.floor(Math.random()*(config.star.speed.max - config.star.speed.min)) + config.star.speed.min;
 
         let starStyle = star[to].el[0].style;
         starStyle[direction=='vertical'?'width':'height'] = star[to].narrow + 'px';
