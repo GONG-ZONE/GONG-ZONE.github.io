@@ -216,7 +216,7 @@
                     if($('.trans:not(.ed)').length == 0) {
                         count++;
 
-                        if(count > 1) {
+                        if(count > 10) {
                             clearInterval(effect);
                             $('#mouse-effect').remove();
                             pixel.status = false;
@@ -233,7 +233,6 @@
     
     function spaceEffect() {
         typingEffect();
-        // lineEffect();
     }
 
     function typingEffect() {
@@ -277,83 +276,138 @@
     }
 
     const line = {
-        topRight: {
-            top: '',
-            right: '',
-            bottom: '',
-            left: '',
-            transitionVertical: 0,
-            transitionHorizontal: 0,
-        },
-        rightBottom: {
-            top: '25vh',
-            right: '-5vw',
-            bottom: '-7vh',
-            left: '40vw',
-            transitionVertical: 1500,
-            transitionHorizontal: 3000,
-        },
-        bottomLeft: {
-            top: '',
-            right: '',
-            bottom: '',
-            left: '',
-            transitionVertical: 0,
-            transitionHorizontal: 0,
-        },
-        leftTop: {
-            top: '-12vh',
-            right: '30vw',
-            bottom: '25vh',
-            left: '-10vw',
-            transitionVertical: 2500,
-            transitionHorizontal: 4000,
-        },
-    }
-
-    function lineEffect() {
-        $('#space-effect > h1').append('<div class="left-top vertical"></div><div class="left-top horizontal"></div><div class="right-bottom vertical"></div><div class="right-bottom horizontal"></div>');
-
-        $('.right-bottom.vertical').animate({
-            top:line.rightBottom.top,
-            bottom:line.rightBottom.bottom
-        },line.rightBottom.transitionVertical);
-        $('.right-bottom.horizontal').animate({
-            right:line.rightBottom.right,
-            left:line.rightBottom.left
-        },line.rightBottom.transitionHorizontal);
-        $('.left-top.vertical').animate({
-            top: line.leftTop.top,
-            bottom: line.leftTop.bottom
-        },line.leftTop.transitionVertical);
-        $('.left-top.horizontal').animate({
-            right:line.leftTop.right,
-            left:line.leftTop.left
-        },line.leftTop.transitionHorizontal);
+        topRight: {},
+        rightBottom: {},
+        bottomLeft: {},
+        leftTop: {},
     }
 
     function titleResize() {
         pixel.winWidth = window.innerWidth;
         pixel.winHeight = window.innerHeight;
-        
-        line.rightBottom.top = '60vh';
-        line.rightBottom.right = '-5vw';
-        line.rightBottom.bottom = '-7vh';
-        line.rightBottom.left = '20vw';
-        line.rightBottom.transitionVertical = 1500;
-        line.rightBottom.transitionHorizontal = 3000;
-        
-        line.leftTop.top = '-12vh';
-        line.leftTop.right = '25vw';
-        line.leftTop.bottom = '55vh';
-        line.leftTop.left = '-10vw';
-        line.leftTop.transitionVertical = 2500;
-        line.leftTop.transitionHorizontal = 4000;
 
-        if(pixel.winWidth < pixel.winHeight) {
-            $('#space-effect > h1').addClass('portrait');
-        } else {
+        if(pixel.winWidth >= pixel.winHeight) {
             $('#space-effect > h1').removeClass('portrait');
+            
+            line.leftTop.top = '-'+             '6vh';
+            line.leftTop.left = '-'+       '8vw';
+            line.leftTop.right =                      '29vw';
+            line.leftTop.bottom =               '19vh';
+                    
+            line.rightBottom.top =              '26vh';
+            line.rightBottom.left =        '37vw';
+            line.rightBottom.right = '-'+             '4vw';
+            line.rightBottom.bottom = '-'+      '2vh';
+        } else {
+            $('#space-effect > h1').addClass('portrait');
+            
+            line.leftTop.top = '-'+             '4vh';
+            line.leftTop.left = '-'+       '5vw';
+            line.leftTop.right =                      '20vw';
+            line.leftTop.bottom =               '51vh';
+                    
+            line.rightBottom.top =              '61vh';
+            line.rightBottom.left =        '17vw';
+            line.rightBottom.right = '-'+             '4vw';
+            line.rightBottom.bottom = '-'+      '7vh';
         }
+
+        $('.left-top.vertical').css({
+            top: line.leftTop.top,
+            bottom: line.leftTop.bottom
+        });
+        $('.left-top.horizontal').css({
+            right: line.leftTop.right,
+            left: line.leftTop.left
+        });
+        $('.right-bottom.vertical').css({
+            top: line.rightBottom.top,
+            bottom: line.rightBottom.bottom
+        });
+        $('.right-bottom.horizontal').css({
+            right: line.rightBottom.right,
+            left: line.rightBottom.left
+        });
+    }
+
+    function lineEffect() {
+        $('#space-effect > h1').append('<div class="left-top vertical"></div><div class="left-top horizontal"></div><div class="right-bottom vertical"></div><div class="right-bottom horizontal"></div>');
+
+        $('.left-top.vertical').animate({
+            top: line.leftTop.top,
+            bottom: line.leftTop.bottom
+        },2500,function(){
+            starEffect('vertical','bottom','top');
+        });
+        $('.left-top.horizontal').animate({
+            right:line.leftTop.right,
+            left:line.leftTop.left
+        },4000,function(){
+            starEffect('horizontal','right','left');
+        });
+        $('.right-bottom.vertical').animate({
+            top:line.rightBottom.top,
+            bottom:line.rightBottom.bottom
+        },1500,function(){
+            starEffect('vertical','top','bottom');
+        });
+        $('.right-bottom.horizontal').animate({
+            right:line.rightBottom.right,
+            left:line.rightBottom.left
+        },3000,function(){
+            starEffect('horizontal','left','right');
+        });
+    }
+
+    const star = {
+        top : {count:0},
+        right : {count:0},
+        bottom : {count:0},
+        left : {count:0}
+        // el: $('.star-right'),
+        // direction: 'horizontal',
+        // to: 'right',
+        // location: '50vh',
+        // length: '5vw',
+        // narrow: '1px',
+        // interval: 3000,
+        // speed: 5000,
+    };
+
+    function starEffect(direction,from,to) {
+        if(star[to].count > 9) star[to].count = 0;
+        $('#space-effect').append('<div class="star-'+to+'-'+star[to].count+'"></div>');
+
+        star[to].el = $('.star-' + to + '-' + star[to].count);
+        star[to].direction = direction;
+        star[to].from = from;
+        star[to].to = to;
+        star[to].location = Math.floor(Math.random()*980)/10 + 1;
+        star[to].length = Math.floor(Math.random()*37) + 10;
+        star[to].opacity = Math.floor(Math.random()*50)/100 + 0.1; 
+        star[to].narrow = /* Math.floor(Math.random()*100) +  */1;
+        star[to].interval = Math.floor(Math.random()*4000) + 4000;
+        star[to].speed = Math.floor(Math.random()*5000) + 1000;
+
+        let starStyle = star[to].el[0].style;
+        starStyle[direction=='vertical'?'width':'height'] = star[to].narrow + 'px';
+        starStyle[star[to].from] = direction=='vertical'?-(star[to].length)+'vh':-(star[to].length)+'vw';
+        starStyle[star[to].to] = direction=='vertical'?'100vh':'100vw';
+        starStyle[direction=='vertical'?'left':'top'] = direction=='vertical'?star[to].location+'vw':star[to].location+'vh';
+        starStyle.opacity = star[to].opacity;
+
+        let aniObj = {};
+        aniObj[star[to].from] = starStyle[star[to].to];
+        aniObj[star[to].to] = starStyle[star[to].from];
+
+        star[to].count++;
+
+        let timer = setTimeout(function(){
+            star[to].el.animate(aniObj,star[to].speed,'linear',function(){
+                clearTimeout(timer);
+                $(this).remove();
+            });
+            starEffect(direction,from,to);
+        },star[to].interval)
     }
 }());
