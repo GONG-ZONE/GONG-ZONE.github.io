@@ -28,7 +28,7 @@ body {font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairl
 /* ************************************************ */
 
 #config-button {position:fixed; z-index:10; bottom:20px; left:20px; display:block; width:40px; background-color:transparent; border:none; border-left:solid 10px rgba(255,255,255,.7);}
-#config-button > div {position:absolute; top:0; bottom:0; width:1px; background-color:#fff; opacity:0; animation-duration:4s; animation-iteration-count:infinite;}
+#config-button > div {position:absolute; top:0; bottom:0; width:1px; background-color:#fff; opacity:0; animation-duration:6s; animation-iteration-count:infinite;}
 #config-button > div:nth-child(1) {left:10px;}
 #config-button > div:nth-child(2) {left:20px;}
 #config-button > div:nth-child(3) {left:30px;}
@@ -40,45 +40,42 @@ body {font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairl
 
 @keyframes signal1 {
     0% {opacity:0;}
-    16.6% {opacity:0.3;}
-    33.3% {opacity:0;}
-    50% {opacity:0;}
-    66.6% {opacity:0;}
-    83.3% {opacity:0;}
+    12% {opacity:0.3;}
+    24% {opacity:0;}
     100% {opacity:0;}
 }
 
 @keyframes signal2 {
     0% {opacity:0;}
-    16.6% {opacity:0;}
-    33.3% {opacity:0.4;}
-    50% {opacity:0;}
-    66.6% {opacity:0;}
-    83.3% {opacity:0;}
+    12% {opacity:0;}
+    24% {opacity:0.4;}
+    36% {opacity:0;}
     100% {opacity:0;}
 }
 
 @keyframes signal3 {
     0% {opacity:0;}
-    16.6% {opacity:0;}
-    33.3% {opacity:0;}
-    50% {opacity:0.5;}
-    66.6% {opacity:0;}
-    83.3% {opacity:0;}
+    24% {opacity:0;}
+    36% {opacity:0.5;}
+    48% {opacity:0;}
     100% {opacity:0;}
 }
 
 @keyframes signal4 {
     0% {opacity:0;}
-    16.6% {opacity:0;}
-    33.3% {opacity:0;}
-    50% {opacity:0;}
-    66.6% {opacity:0.6;}
-    83.3% {opacity:0;}
+    36% {opacity:0;}
+    48% {opacity:0.6;}
+    60% {opacity:0;}
     100% {opacity:0;}
 }
 
-#config-box {position:fixed; z-index:11; bottom:20px; left:80px; width:150px; border-left:solid 1px #fff; opacity:.6;}
+#config-box {position:fixed; z-index:11; bottom:20px; left:80px; width:1px; height:0; background-color:rgba(255,255,255,.3); /* border:solid 1px #fff; */ opacity:.6; overflow:hidden;}
+#config-box > div {box-sizing:border-box; padding:20px 15px;}
+#config-box > div > ul > li {display:flex; height:20px; margin-bottom:5px;}
+#config-box > div > ul > li:last-child {margin-bottom:0;}
+#config-box > div > ul > li > h3 {text-align:center; line-height:20px; font-size:15px; color:#fff;}
+#config-box > div > ul > li > * {display:block; box-sizing:border-box; width:40px; margin-right:10px;}
+#config-box > div > ul > li > *[class$=custom] {width:20px; height:20px; margin-right:0;}
 
 /* ************************************************ */
 
