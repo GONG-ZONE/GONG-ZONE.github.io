@@ -69,13 +69,17 @@ body {font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairl
     100% {opacity:0;}
 }
 
-#config-box {position:fixed; z-index:11; bottom:20px; left:80px; width:1px; height:0; background-color:rgba(255,255,255,.3); /* border:solid 1px #fff; */ opacity:.6; overflow:hidden;}
-#config-box > div {box-sizing:border-box; padding:20px 15px;}
-#config-box > div > ul > li {display:flex; height:20px; margin-bottom:5px;}
-#config-box > div > ul > li:last-child {margin-bottom:0;}
-#config-box > div > ul > li > h3 {text-align:center; line-height:20px; font-size:15px; color:#fff;}
-#config-box > div > ul > li > * {display:block; box-sizing:border-box; width:40px; margin-right:10px;}
-#config-box > div > ul > li > *[class$=custom] {width:20px; height:20px; margin-right:0;}
+#config-box {position:fixed; z-index:11; bottom:20px; left:80px; width:1px; height:0; background-color:rgba(255,255,255,.9); /* border:solid 1px #fff; */ overflow:hidden;}
+#config-box > div {display:grid; grid-template:repeat(6, 20px) 29px / 65px 40px 40px 20px; gap:6px 10px; align-items:center; box-sizing:border-box; height:225px; padding:20px 15px;}
+#config-box > div > * {display:block; box-sizing:border-box; height:20px; padding:0; background-color:transparent; border:unset; border-radius:0; appearance:unset; text-align:center; font-weight:bold; color:#000; font-family:'Bungee Hairline', cursive;}
+#config-box > div > h3 {text-align:center; line-height:20px; font-size:14px; color:#000;}
+#config-box > div > h4 {text-align:left; line-height:20px; font-size:10px;}
+#config-box > div > input[type=text] {font-size:10px;}
+#config-box > div > input[class$=custom] {width:20px; height:20px; border:solid 1px #999;}
+#config-box > div > input[class$=custom]:checked {background-color:#999;}
+#config-box > div > button {margin-top:9px; border:unset; line-height:20px; font-size:12px; cursor:pointer;}
+#config-box > div > button#config-star-change {grid-column:1 / 4; border:solid 1px #999;}
+#config-box > div > button#config-box-close {background-color:#999; font-size:20px; color:#fff;}
 
 /* ************************************************ */
 

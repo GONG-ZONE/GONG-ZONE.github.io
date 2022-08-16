@@ -316,55 +316,95 @@
                 $spaceEffect.append(`
                     <aside id="config-box">
                         <div>
-                            <ul>
-                                <li>
-                                    <h3 class="config-star-title-min">MIN</h3>
-                                    <h3 class="config-star-title-max">MAX</h3>
-                                    <h3 class="config-star-title-custom">U</h3>
-                                </li>
-                                <li>
-                                    <input class="config-star-length-min" type="number" value="${config.star.length.min}">
-                                    <input class="config-star-length-max" type="number" value="${config.star.length.max}">
-                                    <input class="config-star-length-custom" type="checkbox" checked="${config.star.length.custom}">
-                                </li>
-                                <li>
-                                    <input class="config-star-opacity-min" type="number" value="${config.star.opacity.min}">
-                                    <input class="config-star-opacity-max" type="number" value="${config.star.opacity.max}">
-                                    <input class="config-star-opacity-custom" type="checkbox" checked="${config.star.opacity.custom}">
-                                </li>
-                                <li>
-                                    <input class="config-star-narrow-min" type="number" value="${config.star.narrow.min}">
-                                    <input class="config-star-narrow-max" type="number" value="${config.star.narrow.max}">
-                                    <input class="config-star-narrow-custom" type="checkbox" checked="${config.star.narrow.custom}">
-                                </li>
-                                <li>
-                                    <input class="config-star-interval-min" type="number" value="${config.star.interval.min}">
-                                    <input class="config-star-interval-max" type="number" value="${config.star.interval.max}">
-                                    <input class="config-star-interval-custom" type="checkbox" checked="${config.star.interval.custom}">
-                                </li>
-                                <li>
-                                    <input class="config-star-speed-min" type="number" value="${config.star.speed.min}">
-                                    <input class="config-star-speed-max" type="number" value="${config.star.speed.max}">
-                                    <input class="config-star-speed-custom" type="checkbox" checked="${config.star.speed.custom}">
-                                </li>
-                            </ul>
-                            <div>                    
-                                <button class="config-star-change" type="button">CONFIRM</button>
-                            </div>
+                            <h3></h3>
+                            <h3 class="config-star-title-min">MIN</h3>
+                            <h3 class="config-star-title-max">MAX</h3>
+                            <h3 class="config-star-title-custom">U</h3>
+                            
+                            <h4>length</h4>
+                            <input class="config-star-length-min" type="text" value="${config.star.length.min}">
+                            <input class="config-star-length-max" type="text" value="${config.star.length.max}">
+                            <input class="config-star-length-custom" type="checkbox" checked="${config.star.length.custom}">
+                            
+                            <h4>opacity</h4>
+                            <input class="config-star-opacity-min" type="text" value="${config.star.opacity.min}">
+                            <input class="config-star-opacity-max" type="text" value="${config.star.opacity.max}">
+                            <input class="config-star-opacity-custom" type="checkbox" checked="${config.star.opacity.custom}">
+                            
+                            <h4>narrow</h4>
+                            <input class="config-star-narrow-min" type="text" value="${config.star.narrow.min}">
+                            <input class="config-star-narrow-max" type="text" value="${config.star.narrow.max}">
+                            <input class="config-star-narrow-custom" type="checkbox" checked="${config.star.narrow.custom}">
+                            
+                            <h4>interval</h4>
+                            <input class="config-star-interval-min" type="text" value="${config.star.interval.min}">
+                            <input class="config-star-interval-max" type="text" value="${config.star.interval.max}">
+                            <input class="config-star-interval-custom" type="checkbox" checked="${config.star.interval.custom}">
+                            
+                            <h4>speed</h4>
+                            <input class="config-star-speed-min" type="text" value="${config.star.speed.min}">
+                            <input class="config-star-speed-max" type="text" value="${config.star.speed.max}">
+                            <input class="config-star-speed-custom" type="checkbox" checked="${config.star.speed.custom}">
+                            
+                            <button id="config-star-change" type="button">CHANGE</button>
+                            <button id="config-box-close" type="button">×</button>
                         </div>
                     </aside>
-                `);/* 그리드로 다시 한번해보자 */
+                `);
+                $('.config-star-length-custom').prop('checked',config.star.length.custom);
+                $('.config-star-opacity-custom').prop('checked',config.star.opacity.custom);
+                $('.config-star-narrow-custom').prop('checked',config.star.narrow.custom);
+                $('.config-star-interval-custom').prop('checked',config.star.interval.custom);
+                $('.config-star-speed-custom').prop('checked',config.star.speed.custom);
             }
-            $('#config-box').stop().animate({height:225},1000,'linear',function(){
-                $(this).animate({width:150},750,'linear');
+            $('#config-box').stop().animate({height:225},750,'linear',function(){
+                $(this).animate({width:225},750,'linear');
             });
         })
 
-        if(!document.getElementById('config-box')) {
-            $(document).on('click','#config-box .config-star-change',function(){
-                let configStarLength = $(this).siblings('.config-star-length').val();
+        $(document).on('click','#config-box-close',function(){
+            $('#config-box').stop().animate({width:1},500,'linear',function(){
+                $(this).animate({height:0},500,'linear');
             })
-        }
+        })
+
+        $(document).on('click','#config-star-change',function(){
+                        
+            if(config.star.length.custom = $('.config-star-length-custom').prop('checked')) {
+                config.star.length.min = parseFloat($('.config-star-length-min').val());
+                config.star.length.max = parseFloat($('.config-star-length-max').val());
+            } else {
+                config.star.init('length');
+            }
+            
+            if(config.star.opacity.custom = $('.config-star-opacity-custom').prop('checked')) {
+                config.star.opacity.min = parseFloat($('.config-star-opacity-min').val());
+                config.star.opacity.max = parseFloat($('.config-star-opacity-max').val());
+            } else {
+                config.star.init('opacity');
+            }
+            
+            if(config.star.narrow.custom = $('.config-star-narrow-custom').prop('checked')) {
+                config.star.narrow.min = parseFloat($('.config-star-narrow-min').val());
+                config.star.narrow.max = parseFloat($('.config-star-narrow-max').val());
+            } else {
+                config.star.init('narrow');
+            }
+            
+            if(config.star.interval.custom = $('.config-star-interval-custom').prop('checked')) {
+                config.star.interval.min = parseFloat($('.config-star-interval-min').val());
+                config.star.interval.max = parseFloat($('.config-star-interval-max').val());
+            } else {
+                config.star.init('interval');
+            }
+            
+            if(config.star.speed.custom = $('.config-star-speed-custom').prop('checked')) {
+                config.star.speed.min = parseFloat($('.config-star-speed-min').val());
+                config.star.speed.max = parseFloat($('.config-star-speed-max').val());
+            } else {
+                config.star.init('speed');
+            }            
+        })
     }
     
     function spaceEffect() {
