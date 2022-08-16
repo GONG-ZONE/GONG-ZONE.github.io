@@ -1,12 +1,9 @@
 (function(){
     const config = {
+        status: 'default',
+
         star: {
             length: {
-                custom: null,
-                min: 0,
-                max: 0,
-            },
-            opacity: {
                 custom: null,
                 min: 0,
                 max: 0,
@@ -16,12 +13,17 @@
                 min: 0,
                 max: 0,
             },
+            speed: {
+                custom: null,
+                min: 0,
+                max: 0,
+            },
             interval: {
                 custom: null,
                 min: 0,
                 max: 0,
             },
-            speed: {
+            opacity: {
                 custom: null,
                 min: 0,
                 max: 0,
@@ -33,33 +35,31 @@
                     this.length.min = 10;
                     this.length.max = 47;
                 }
-                if(!key || key == 'opacity') {
-                    this.opacity.custom = false;
-                    this.opacity.min = 0.1;
-                    this.opacity.max = 0.3;
-                }
                 if(!key || key == 'narrow') {
                     this.narrow.custom = false;
                     this.narrow.min = 1;
                     this.narrow.max = 1;
-                }
-                if(!key || key == 'interval') {
-                    this.interval.custom = false;
-                    this.interval.min = 4000;
-                    this.interval.max = 8000;
                 }
                 if(!key || key == 'speed') {
                     this.speed.custom = false;
                     this.speed.min = 1000;
                     this.speed.max = 6000;
                 }
-            },
-
-            control: function(data) {
-                for(i in data) {
-                    console.log(`${i} : ${data[i]}`);
+                if(!key || key == 'interval') {
+                    this.interval.custom = false;
+                    this.interval.min = 4000;
+                    this.interval.max = 8000;
                 }
-            }
+                if(!key || key == 'opacity') {
+                    this.opacity.custom = false;
+                    this.opacity.min = 0.1;
+                    this.opacity.max = 0.3;
+                }
+
+                if(!key) {
+                    config.status = 'init';
+                }
+            },
         },
 
         init: function() {
@@ -107,6 +107,7 @@
         titleResize();
     })
     
+    /* 배경 뒤집히는 효과 */
     function mouseEffectBack() {
         pixel.winWidth = window.innerWidth;
         pixel.winHeight = window.innerHeight;
@@ -304,6 +305,7 @@
     function configButton() {
         const $spaceEffect = $('#space-effect'),
             configButton = '<button id="config-button" type="button"><div></div><div></div><div></div><div></div></button>';
+        let configBox = '';
             
         $spaceEffect.append(configButton);
 
@@ -313,97 +315,77 @@
 
         $(document).on('click','#config-button',function(){
             if(!document.getElementById('config-box')) {
-                $spaceEffect.append(`
+                configBox += `
                     <aside id="config-box">
                         <div>
                             <h3></h3>
                             <h3 class="config-star-title-min">MIN</h3>
                             <h3 class="config-star-title-max">MAX</h3>
-                            <h3 class="config-star-title-custom">U</h3>
-                            
-                            <h4>length</h4>
-                            <input class="config-star-length-min" type="text" value="${config.star.length.min}">
-                            <input class="config-star-length-max" type="text" value="${config.star.length.max}">
-                            <input class="config-star-length-custom" type="checkbox" checked="${config.star.length.custom}">
-                            
-                            <h4>opacity</h4>
-                            <input class="config-star-opacity-min" type="text" value="${config.star.opacity.min}">
-                            <input class="config-star-opacity-max" type="text" value="${config.star.opacity.max}">
-                            <input class="config-star-opacity-custom" type="checkbox" checked="${config.star.opacity.custom}">
-                            
-                            <h4>narrow</h4>
-                            <input class="config-star-narrow-min" type="text" value="${config.star.narrow.min}">
-                            <input class="config-star-narrow-max" type="text" value="${config.star.narrow.max}">
-                            <input class="config-star-narrow-custom" type="checkbox" checked="${config.star.narrow.custom}">
-                            
-                            <h4>interval</h4>
-                            <input class="config-star-interval-min" type="text" value="${config.star.interval.min}">
-                            <input class="config-star-interval-max" type="text" value="${config.star.interval.max}">
-                            <input class="config-star-interval-custom" type="checkbox" checked="${config.star.interval.custom}">
-                            
-                            <h4>speed</h4>
-                            <input class="config-star-speed-min" type="text" value="${config.star.speed.min}">
-                            <input class="config-star-speed-max" type="text" value="${config.star.speed.max}">
-                            <input class="config-star-speed-custom" type="checkbox" checked="${config.star.speed.custom}">
-                            
-                            <button id="config-star-change" type="button">CHANGE</button>
+                            <h3 class="config-star-title-custom">U</h3>`;
+                
+                for(i in config.star) {
+                    if(i == 'init') continue;
+
+                    configBox += `
+                            <h4>${i}</h4>
+                            <input class="config-star-${i}-min" type="text" value="${config.star[i].min}">
+                            <input class="config-star-${i}-max" type="text" value="${config.star[i].max}">
+                            <input class="config-star-${i}-custom" type="checkbox">`;
+                }
+                
+                configBox += `                            
+                            <button id="config-star-change" type="button">change</button>
+                            <button id="config-star-init" type="button">init</button>
                             <button id="config-box-close" type="button">×</button>
                         </div>
-                    </aside>
-                `);
-                $('.config-star-length-custom').prop('checked',config.star.length.custom);
-                $('.config-star-opacity-custom').prop('checked',config.star.opacity.custom);
-                $('.config-star-narrow-custom').prop('checked',config.star.narrow.custom);
-                $('.config-star-interval-custom').prop('checked',config.star.interval.custom);
-                $('.config-star-speed-custom').prop('checked',config.star.speed.custom);
+                        <span>changing</span>
+                    </aside>`;
+                
+                $spaceEffect.append(configBox);
+                
+                for(i in config.star) {
+                    if(i == 'init') continue;
+                    
+                    $('.config-star-'+ i +'-custom').prop('checked',config.star[i].custom);
+                }
             }
             $('#config-box').stop().animate({height:225},750,'linear',function(){
                 $(this).animate({width:225},750,'linear');
             });
         })
 
+        $(document).on('click','#config-star-change',function(){
+            config.status = 'changing';
+            $('#config-box').addClass('changing');
+
+            for(i in config.star) {
+                if(i == 'init') continue;
+                
+                if(config.star[i].custom = $('.config-star-'+ i +'-custom').prop('checked')) {
+                    config.star[i].min = parseFloat($('.config-star-'+ i +'-min').val());
+                    config.star[i].max = parseFloat($('.config-star-'+ i +'-max').val());
+                } else {
+                    config.star.init(i);
+                }
+            }
+        })
+
+        $(document).on('click','#config-star-init',function(){
+            config.init();
+
+            for(i in config.star) {
+                if(i == 'init') continue;
+                
+                $('.config-star-'+ i +'-custom').prop('checked',config.star[i].custom);
+                $('.config-star-'+ i +'-min').val(config.star[i].min);
+                $('.config-star-'+ i +'-max').val(config.star[i].max);
+            }
+        })
+
         $(document).on('click','#config-box-close',function(){
             $('#config-box').stop().animate({width:1},500,'linear',function(){
                 $(this).animate({height:0},500,'linear');
             })
-        })
-
-        $(document).on('click','#config-star-change',function(){
-                        
-            if(config.star.length.custom = $('.config-star-length-custom').prop('checked')) {
-                config.star.length.min = parseFloat($('.config-star-length-min').val());
-                config.star.length.max = parseFloat($('.config-star-length-max').val());
-            } else {
-                config.star.init('length');
-            }
-            
-            if(config.star.opacity.custom = $('.config-star-opacity-custom').prop('checked')) {
-                config.star.opacity.min = parseFloat($('.config-star-opacity-min').val());
-                config.star.opacity.max = parseFloat($('.config-star-opacity-max').val());
-            } else {
-                config.star.init('opacity');
-            }
-            
-            if(config.star.narrow.custom = $('.config-star-narrow-custom').prop('checked')) {
-                config.star.narrow.min = parseFloat($('.config-star-narrow-min').val());
-                config.star.narrow.max = parseFloat($('.config-star-narrow-max').val());
-            } else {
-                config.star.init('narrow');
-            }
-            
-            if(config.star.interval.custom = $('.config-star-interval-custom').prop('checked')) {
-                config.star.interval.min = parseFloat($('.config-star-interval-min').val());
-                config.star.interval.max = parseFloat($('.config-star-interval-max').val());
-            } else {
-                config.star.init('interval');
-            }
-            
-            if(config.star.speed.custom = $('.config-star-speed-custom').prop('checked')) {
-                config.star.speed.min = parseFloat($('.config-star-speed-min').val());
-                config.star.speed.max = parseFloat($('.config-star-speed-max').val());
-            } else {
-                config.star.init('speed');
-            }            
         })
     }
     
@@ -551,6 +533,12 @@
     };
 
     function starEffect(direction,from,to) {
+        if(config.status == 'changing') {
+            $('#config-box').addClass('changing');
+        } else {
+            $('#config-box').removeClass('changing');
+        }
+
         if(star[to].count > 9) star[to].count = 0;
         $('#space-effect').append('<div class="star-'+to+'-'+star[to].count+'"></div>');
 
@@ -561,10 +549,10 @@
         star[to].location = Math.floor(Math.random()*990)/10;
 
         star[to].length = Math.floor(Math.random()*(config.star.length.max - config.star.length.min)) + config.star.length.min;
-        star[to].opacity = Math.floor(Math.random()*(config.star.opacity.max - config.star.opacity.min)*100)/100 + config.star.opacity.min; 
         star[to].narrow = Math.floor(Math.random()*(config.star.narrow.max - config.star.narrow.min)) + config.star.narrow.min;
-        star[to].interval = Math.floor(Math.random()*(config.star.interval.max - config.star.interval.min)) + config.star.interval.min;
         star[to].speed = Math.floor(Math.random()*(config.star.speed.max - config.star.speed.min)) + config.star.speed.min;
+        star[to].interval = Math.floor(Math.random()*(config.star.interval.max - config.star.interval.min)) + config.star.interval.min;
+        star[to].opacity = Math.floor(Math.random()*(config.star.opacity.max - config.star.opacity.min)*100)/100 + config.star.opacity.min; 
 
         let starStyle = star[to].el[0].style;
         starStyle[direction=='vertical'?'width':'height'] = star[to].narrow + 'px';
@@ -583,6 +571,10 @@
             star[to].el.animate(aniObj,star[to].speed,'linear',function(){
                 clearTimeout(timer);
                 $(this).remove();
+
+                if(config.status == 'changing') {
+                    config.status = 'changed';
+                }
             });
             starEffect(direction,from,to);
         },star[to].interval)
