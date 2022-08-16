@@ -304,15 +304,67 @@
     function configButton() {
         const $spaceEffect = $('#space-effect'),
             configButton = '<button id="config-button" type="button"><div></div><div></div><div></div><div></div></button>';
+            
         $spaceEffect.append(configButton);
+
         $('#config-button').animate({height:50},2000,function(){
             $(this).addClass('signal');
         });
 
         $(document).on('click','#config-button',function(){
-            $spaceEffect.append('<aside id="config-box"></aside>');
-            $('#config-box').stop().animate({height:200},1000,'linear');
+            if(!document.getElementById('config-box')) {
+                $spaceEffect.append(`
+                    <aside id="config-box">
+                        <div>
+                            <ul>
+                                <li>
+                                    <h3 class="config-star-title-min">MIN</h3>
+                                    <h3 class="config-star-title-max">MAX</h3>
+                                    <h3 class="config-star-title-custom">U</h3>
+                                </li>
+                                <li>
+                                    <input class="config-star-length-min" type="number" value="${config.star.length.min}">
+                                    <input class="config-star-length-max" type="number" value="${config.star.length.max}">
+                                    <input class="config-star-length-custom" type="checkbox" checked="${config.star.length.custom}">
+                                </li>
+                                <li>
+                                    <input class="config-star-opacity-min" type="number" value="${config.star.opacity.min}">
+                                    <input class="config-star-opacity-max" type="number" value="${config.star.opacity.max}">
+                                    <input class="config-star-opacity-custom" type="checkbox" checked="${config.star.opacity.custom}">
+                                </li>
+                                <li>
+                                    <input class="config-star-narrow-min" type="number" value="${config.star.narrow.min}">
+                                    <input class="config-star-narrow-max" type="number" value="${config.star.narrow.max}">
+                                    <input class="config-star-narrow-custom" type="checkbox" checked="${config.star.narrow.custom}">
+                                </li>
+                                <li>
+                                    <input class="config-star-interval-min" type="number" value="${config.star.interval.min}">
+                                    <input class="config-star-interval-max" type="number" value="${config.star.interval.max}">
+                                    <input class="config-star-interval-custom" type="checkbox" checked="${config.star.interval.custom}">
+                                </li>
+                                <li>
+                                    <input class="config-star-speed-min" type="number" value="${config.star.speed.min}">
+                                    <input class="config-star-speed-max" type="number" value="${config.star.speed.max}">
+                                    <input class="config-star-speed-custom" type="checkbox" checked="${config.star.speed.custom}">
+                                </li>
+                            </ul>
+                            <div>                    
+                                <button class="config-star-change" type="button">CONFIRM</button>
+                            </div>
+                        </div>
+                    </aside>
+                `);/* 그리드로 다시 한번해보자 */
+            }
+            $('#config-box').stop().animate({height:225},1000,'linear',function(){
+                $(this).animate({width:150},750,'linear');
+            });
         })
+
+        if(!document.getElementById('config-box')) {
+            $(document).on('click','#config-box .config-star-change',function(){
+                let configStarLength = $(this).siblings('.config-star-length').val();
+            })
+        }
     }
     
     function spaceEffect() {
