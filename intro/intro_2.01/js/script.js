@@ -302,6 +302,9 @@
 
     /* ********************************************************* */
 
+    let changeInterval;
+    let changeCount = 96;
+    
     function configButton() {
         const $spaceEffect = $('#space-effect'),
             configButton = '<button id="config-button" type="button"><div></div><div></div><div></div><div></div></button>';
@@ -338,7 +341,9 @@
                             <button id="config-star-init" type="button">init</button>
                             <button id="config-box-close" type="button">×</button>
                         </div>
-                        <span>changing</span>
+                        <article>
+                            <h2>changing</h2>
+                        </article>
                     </aside>`;
                 
                 $spaceEffect.append(configBox);
@@ -348,15 +353,33 @@
                     
                     $('.config-star-'+ i +'-custom').prop('checked',config.star[i].custom);
                 }
+            } 
+            
+            if(!$('#config-box').hasClass('on')) {
+                $('#config-box').addClass('on').stop().animate({height:225},750,'linear',function(){
+                    $(this).animate({width:225},750,'linear');
+                });
+            } else {                
+                $('#config-box').removeClass('on').stop().animate({width:1},500,'linear',function(){
+                    $(this).animate({height:0},500,'linear');
+                })
             }
-            $('#config-box').stop().animate({height:225},750,'linear',function(){
-                $(this).animate({width:225},750,'linear');
-            });
         })
 
         $(document).on('click','#config-star-change',function(){
             config.status = 'changing';
             $('#config-box').addClass('changing');
+
+            changeInterval = setInterval(function(){
+                $('#config-box.changing > article > h2').css({
+                    background: 'linear-gradient(290deg, #333 '+ changeCount +'%, #ddd '+ changeCount +'% '+ (changeCount+4) +'%,#333 '+ (changeCount+4) +'%)',
+                    '-webkit-background-clip': 'text',
+                    '-webkit-text-fill-color': 'transparent',
+                });
+                if(changeCount-- <= 0) {
+                    changeCount = 96;
+                }
+            },10);
 
             for(i in config.star) {
                 if(i == 'init') continue;
@@ -383,7 +406,7 @@
         })
 
         $(document).on('click','#config-box-close',function(){
-            $('#config-box').stop().animate({width:1},500,'linear',function(){
+            $('#config-box').removeClass('on').stop().animate({width:1},500,'linear',function(){
                 $(this).animate({height:0},500,'linear');
             })
         })
@@ -533,13 +556,8 @@
     };
 
     function starEffect(direction,from,to) {
-        if(config.status == 'changing') {
-            $('#config-box').addClass('changing');
-        } else {
-            $('#config-box').removeClass('changing');
-        }
 
-        if(star[to].count > 9) star[to].count = 0;
+        if(star[to].count > 99) star[to].count = 0;
         $('#space-effect').append('<div class="star-'+to+'-'+star[to].count+'"></div>');
 
         star[to].el = $('.star-' + to + '-' + star[to].count);
@@ -571,11 +589,16 @@
             star[to].el.animate(aniObj,star[to].speed,'linear',function(){
                 clearTimeout(timer);
                 $(this).remove();
-
+                
                 if(config.status == 'changing') {
                     config.status = 'changed';
+                } else if (config.status == 'changed') {
+                    $('#config-box').removeClass('changing');
+                    changeCount = 0;
+                    clearInterval(changeInterval);
                 }
             });
+
             starEffect(direction,from,to);
         },star[to].interval)
     }

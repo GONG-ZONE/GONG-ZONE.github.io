@@ -70,8 +70,9 @@ body {font-family: 'Bungee Hairline', cursive; /* 기본 웹 폰트[Bungee hairl
 }
 
 #config-box {position:fixed; z-index:11; bottom:20px; left:80px; width:1px; height:0; background-color:rgba(255,255,255,.9); /* border:solid 1px #fff; */ overflow:hidden;}
-#config-box > span {display:none;}
-#config-box.changing > span {display:flex; justify-content:center; align-items:center; position:absolute; top:0; right:0; bottom:0; left:0; background-color:rgba(255,255,255,.7); font-size:20px; font-weight:bold; color:#333;}
+#config-box > article {display:none;}
+#config-box.changing > article {display:flex; justify-content:center; align-items:center; position:absolute; top:0; right:0; bottom:0; left:0; background-color:rgba(255,255,255,.7);}
+#config-box.changing > article > h2 {width:100%; text-align:center; font-size:26px; font-weight:bold; -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
 #config-box > div {display:grid; grid-template:repeat(6, 20px) 29px / 65px 40px 40px 20px; gap:6px 10px; align-items:center; box-sizing:border-box; height:225px; padding:20px 15px;}
 #config-box > div > * {display:block; box-sizing:border-box; height:20px; padding:0; background-color:transparent; border:unset; border-radius:0; appearance:unset; text-align:center; font-weight:bold; color:#000; font-family:'Bungee Hairline', cursive;}
 #config-box > div > h3 {text-align:center; line-height:20px; font-size:14px; color:#000;}
