@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>gravity</title>
+
+    <style>
+
+        html, body, div, span, iframe,
+        h1, h2, h3, h4, h5, h6, p, 
+        a, address, cite, code,
+        img, strong, b, ol, ul, li, hr,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, 
+        figure, figcaption, footer, header, 
+        menu, nav, section,
+        button, input, textarea, select {margin:0; padding:0; border:unset; font-size:100%; font:inherit; vertical-align:baseline; color:inherit;}
+
+        a {text-decoration:none; color:inherit;}
+        ol, ul {list-style:none;}
+        table {border-collapse:collapse; border-spacing:0; table-layout:fixed;}
+        button, input, textarea, select {display:inline-block; background-color:unset; appearance:none;}
+        button {cursor:pointer;}
+
+        html, body {height:100%;}
+        div {position:fixed; top:calc(50% - 25px); left:calc(50% - 25px); width:50px; height:50px; border-radius:50px;}
+        #earth {z-index:1; background-color:#ccc;}
+        #object {z-index:10; background-color:#f90;}
+    </style>
+
+    <script src="../js/jquery.3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="earth"></div>
+    <div id="object"></div>
+</body>
+</html>
+
+<script>
+$(document).ready(function(){
+    let mouseStatus = 'up';
+    let earthX = document.getElementById('earth').offsetLeft;
+    let earthY = document.getElementById('earth').offsetTop;
+
+    (function(){
+        $(document).on('mousedown','#object',function(e){
+            mouseStatus = 'down';
+            mouseMove(mouseStatus,$(this),e.originalEvent.offsetX,e.originalEvent.offsetY);
+        })
+        
+        $(document).on('mouseup','#object',function(e){
+            mouseStatus = 'up';
+            $(document).off('mousemove','body');
+        });
+
+        function mouseMove(status,obj,innerX,innerY) {
+            if(status == 'up') return;
+
+            $(document).on('mousemove','body',function(e){
+                obj[0].style.left = e.clientX - innerX + 'px';
+                obj[0].style.top = e.clientY - innerY + 'px';
+            })
+        }
+    }());
+
+    (function(){
+        let gravity = setInterval(function(){
+            console.log(mouseStatus);
+        },1000);
+    }());
+})
+</script>
