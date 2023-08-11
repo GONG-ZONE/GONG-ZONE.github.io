@@ -41,9 +41,31 @@
 
 <script>
 $(document).ready(function(){
-    let mouseStatus = 'up';
-    let earthX = document.getElementById('earth').offsetLeft;
-    let earthY = document.getElementById('earth').offsetTop;
+    let mouseStatus = 'up',
+        objectStatus = 'stable',
+        object = document.getElementById('object'),
+        $object = $('#object'),
+        gravity,
+        loop = 1,
+        direct = 1,
+
+        earthX = document.getElementById('earth').offsetLeft,
+        earthY = document.getElementById('earth').offsetTop,
+        objectX = object.offsetLeft,
+        objectY = object.offsetTop,
+        x = objectX - earthX,
+        y = earthY - objectY,
+        oldX = x,
+        oldY = y,
+        X = 0,
+        Y = 0,
+        D = Math.sqrt(Math.pow(x,2) + Math.pow(y,2)),
+        G = 1,
+        GA = (G/D) * direct,
+        K = 0,
+        M = loop * K,
+        S = y/x;
+    console.log(`earth: (${earthX},${earthY})`);
 
     (function(){
         $(document).on('mousedown','#object',function(e){
@@ -54,6 +76,60 @@ $(document).ready(function(){
         $(document).on('mouseup','#object',function(e){
             mouseStatus = 'up';
             $(document).off('mousemove','body');
+            
+            gravity = setInterval(function(){
+                // console.log(mouseStatus);
+                objectX = object.offsetLeft;
+                objectY = object.offsetTop;
+                x = objectX - earthX;
+                y = earthY - objectY;
+                D = Math.sqrt(Math.pow(x,2) + Math.pow(y,2));
+
+                if(x*oldX < 0 || y*oldY < 0) {
+                    direct *= -1;
+                }
+                oldX = x;
+                oldY = y;
+                if(!S) S = y/x;
+
+                GA = (G/D) * direct;
+                K += GA;
+                M = loop * K;
+
+                X = Math.sqrt(Math.pow(M,2)/(Math.pow(S,2)+1));
+                Y = Math.sqrt(Math.pow(S*M,2)/(Math.pow(S,2)+1));
+                if(M < 0) {
+                    X = -X;
+                    Y = -Y;
+                }
+
+                if((X == 0 && Y == 0) || K == 'Infinity') {
+                    clearInterval(gravity);
+                }
+
+                if(x >= 0 && y >= 0) {
+                    
+                } else if (x < 0 && y >= 0) {
+                    X = -X;
+                } else if (x < 0 && y < 0) {
+                    X = -X;
+                    Y = -Y;
+                } else {
+                    Y = -Y;
+                }
+
+                $object.css({left:(objectX-X),top:(objectY+Y)});
+                
+console.log(`earth: (${earthX},${earthY})
+object: (${objectX},${objectY})
+거리: ${D} (${x},${y})
+중력상수: ${G}
+가속도: ${GA}
+속도: ${K}
+이동거리: ${M} (${X},${Y})
+기울기: ${S}`);
+
+            },loop);
         });
 
         function mouseMove(status,obj,innerX,innerY) {
@@ -67,9 +143,6 @@ $(document).ready(function(){
     }());
 
     (function(){
-        let gravity = setInterval(function(){
-            console.log(mouseStatus);
-        },1000);
     }());
 })
 </script>
