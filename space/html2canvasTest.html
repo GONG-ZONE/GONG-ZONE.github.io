@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>TIONCARE REPORT</title>
+    
+    <!-- <link href="/Content/report.css" rel="stylesheet"> -->
+    <style>
+        @font-face {
+            font-family:'NotoSansKR';
+            src:
+                url('/fonts/NotoSansKR/NotoSansKR-Thin.woff2') format('woff2'),
+                url('/fonts/NotoSansKR/NotoSansKR-Thin.woff') format('woff'),
+                url('/fonts/NotoSansKR/NotoSansKR-Thin.otf') format('truetype');
+            font-weight:100;
+        }
+        @font-face {
+            font-family:'NotoSansKR';
+            src:
+                url('/fonts/NotoSansKR/NotoSansKR-DemiLight.woff2') format('woff2'),
+                url('/fonts/NotoSansKR/NotoSansKR-DemiLight.woff') format('woff'),
+                url('/fonts/NotoSansKR/NotoSansKR-DemiLight.otf') format('truetype');
+            font-weight:200;
+        }
+        @font-face {
+            font-family:'NotoSansKR';
+            src:
+                url('/fonts/NotoSansKR/NotoSansKR-Light.woff2') format('woff2'),
+                url('/fonts/NotoSansKR/NotoSansKR-Light.woff') format('woff'),
+                url('/fonts/NotoSansKR/NotoSansKR-Light.otf') format('truetype');
+            font-weight:300;
+        }
+        @font-face {
+            font-family:'NotoSansKR';
+            src:
+                url('/fonts/NotoSansKR/NotoSansKR-Regular.woff2') format('woff2'),
+                url('/fonts/NotoSansKR/NotoSansKR-Regular.woff') format('woff'),
+                url('/fonts/NotoSansKR/NotoSansKR-Regular.otf') format('truetype');
+            font-weight:400;
+        }
+        @font-face {
+            font-family:'NotoSansKR';
+            src:
+                url('/fonts/NotoSansKR/NotoSansKR-Medium.woff2') format('woff2'),
+                url('/fonts/NotoSansKR/NotoSansKR-Medium.woff') format('woff'),
+                url('/fonts/NotoSansKR/NotoSansKR-Medium.otf') format('truetype');
+            font-weight:500;
+        }
+        @font-face {
+            font-family:'NotoSansKR';
+            src:
+                url('/fonts/NotoSansKR/NotoSansKR-Bold.woff2') format('woff2'),
+                url('/fonts/NotoSansKR/NotoSansKR-Bold.woff') format('woff'),
+                url('/fonts/NotoSansKR/NotoSansKR-Bold.otf') format('truetype');
+            font-weight:700;
+        }
+        @font-face {
+            font-family:'NotoSansKR';
+            src:
+                url('/fonts/NotoSansKR/NotoSansKR-Black.woff2') format('woff2'),
+                url('/fonts/NotoSansKR/NotoSansKR-Black.woff') format('woff'),
+                url('/fonts/NotoSansKR/NotoSansKR-Black.otf') format('truetype');
+            font-weight:900;
+        }
+
+        @font-face {
+            font-family:'Roboto';
+            src:url('/fonts/Roboto/Roboto-Thin.ttf') format('truetype');
+            font-weight:100;
+        }
+        @font-face {
+            font-family:'Roboto';
+            src:url('/fonts/Roboto/Roboto-Light.ttf') format('truetype');
+            font-weight:300;
+        }
+        @font-face {
+            font-family:'Roboto';
+            src:url('/fonts/Roboto/Roboto-Regular.ttf') format('truetype');
+            font-weight:400;
+        }
+        @font-face {
+            font-family:'Roboto';
+            src:url('/fonts/Roboto/Roboto-Bold.ttf') format('truetype');
+            font-weight:700;
+        }
+        @font-face {
+            font-family:'Roboto';
+            src:url('/fonts/Roboto/Roboto-Black.ttf') format('truetype');
+            font-weight:900;
+        }
+
+        html, body, div, span, iframe,
+        h1, h2, h3, h4, h5, h6, p, 
+        a, address, cite, code,
+        img, strong, b, ol, ul, li, hr,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, 
+        figure, figcaption, footer, header, 
+        menu, nav, section,
+        button, input, textarea, select {
+            margin:0;
+            padding:0;
+            border:unset;
+            vertical-align:baseline;
+            color:inherit;
+        }
+
+        body {margin:0 auto; font-family:NotoSansKR;}
+        button {background-color:transparent; font-family:inherit; cursor:pointer;}
+        input {font-family:inherit;}
+        img {vertical-align: top;}
+        a {text-decoration:none; color:inherit;}
+        ol, ul {list-style:none;}
+        table {border-collapse:collapse; border-spacing:0; table-layout:fixed;}
+        button, input, textarea, select {display:inline-block; background-color:unset; appearance:none;}
+
+
+
+        #report-main {position:relative;}
+        #report-main .report-main-mark {display:block; width:8.333vw; margin:4.444vw auto 3.889vw;}
+
+        #report-main > #section-intro > .section-wrapper {padding-bottom:13.611vw; background-image:url(/images/report/bg@3x.png); background-repeat:no-repeat; background-position:center; background-size:contain; text-align:center;}
+        #report-main > #section-intro .intro-logo {width: 25.278vw; margin:9.167vw 0;}
+        #report-main > #section-intro .intro-hello {line-height:7.5vw; font-size:5vw; color:#fff; letter-spacing:-0.1vw;}
+        #report-main > #section-intro .intro-month {margin:18.333vw 0 3.333vw; line-height:9.444vw; font-family:Roboto; font-size:7.778vw; font-weight:700; color:#fffc9c;}
+        #report-main > #section-intro .intro-text {line-height:8.056vw; font-size:5.556vw; color:#fff; letter-spacing:-0.111vw;}
+        #report-main > #section-intro .intro-img {width:93.889vw; margin-top:5vw;}
+
+        #report-main > #section-first {margin:16.667vw 0 0;}
+        #report-main > #section-first > .section-wrapper {padding-bottom:15.278vw; background-image:url(/images/report/bg_1.svg); background-repeat:no-repeat; background-position:center; background-size:contain; text-align:center;}
+        #report-main > #section-first .first-text {line-height:10vw; font-size:6.667vw; letter-spacing:-0.133vw;}
+        #report-main > #section-first .first-text > strong {line-height:10vw; font-size:6.667vw; font-weight:bold; letter-spacing:-0.133vw;}
+        #report-main > #section-first .first-img {width:30.556vw; height:30.556vw; margin:8.889vw auto 3.889vw; background-color:#cdd1dc; background-repeat:no-repeat; background-position:center; background-size:cover; border-radius:11.111vw;}
+        #report-main > #section-first .first-name {width:fit-content; margin:0 auto; padding:1.667vw 10.556vw; border-radius:4.167vw; text-align:center; box-shadow:0 0.556vw 1.667vw 0 #cdd1dc; line-height:8.056vw; font-size:5.556vw; font-weight:500; letter-spacing:-0.111vw;}
+
+        #report-main > #section-rank {margin:16.667vw 0 0;}
+        #report-main > #section-rank .section-wrapper {padding:0 4.444vw 15.278vw;}
+        #report-main > #section-rank .rank-text {text-align:center; line-height:10vw; font-size:6.667vw; letter-spacing:-0.133vw;}
+        #report-main > #section-rank .rank-text > strong {line-height:10vw; font-size:6.667vw; font-weight:bold; letter-spacing:-0.133vw;}
+        #report-main > #section-rank .rank-group {position:relative; height:37.222vw; margin:50.278vw 0 0; background-image:url(/images/report/bg_1-1@3x.png); background-repeat:no-repeat; background-position:center bottom; background-size:91.111vw;}
+        #report-main > #section-rank .rank-group > div {position:absolute; bottom:28.056vw; display:flex; flex-direction:column; align-items:center; gap:1.944vw;}
+        #report-main > #section-rank .rank-group .rank-img {width:15.278vw; height:15.278vw; border-radius:5.556vw; background-color:#cdd1dc; background-repeat:no-repeat; background-position:center; background-size:cover;}
+        #report-main > #section-rank .rank-group .rank-name {line-height:6.667vw; font-size:4.444vw; font-weight:500; letter-spacing:-0.089vw;}
+        #report-main > #section-rank .rank-group > .rank-second {left:11.111vw;}
+        #report-main > #section-rank .rank-group > .rank-third {right:11.111vw;}
+        #report-main > #section-rank .rank-group > .rank-first {bottom:37.5vw; left:50%; margin-left:-11.111vw;}
+        #report-main > #section-rank .rank-group > .rank-first > .rank-img {width:22.222vw; height:22.222vw; border-radius:8.333vw;}
+        #report-main > #section-rank .rank-group > .rank-first .rank-crown {position:absolute; top:-10.278vw; left:5vw; width:12.222vw;}
+
+        #report-main > #section-recommend {padding:16.667vw 0 7.778vw;}
+        #report-main > #section-recommend > .section-wrapper {padding-bottom:39.722vw; background-image:url(/images/report/bg_2-1@3x.png); background-repeat:no-repeat; background-position:right bottom; background-size:51.944vw;}
+        #report-main > #section-recommend .recommend-text {text-align:center; line-height:10vw; font-size:6.667vw; letter-spacing:-0.133vw;}
+        #report-main > #section-recommend .recommend-text > strong {line-height:10vw; font-size:6.667vw; font-weight:bold; letter-spacing:-0.133vw;}
+        #report-main > #section-recommend .recommend-info {box-sizing:border-box; width:59.722vw; height:50vw; margin:11.389vw 0 0 4.167vw; padding:8.056vw; background-image:url(/images/report/bg_2.svg); background-repeat:no-repeat; background-position:center top; background-size:100%;}
+        #report-main > #section-recommend .recommend-info > .recommend-name,
+        #report-main > #section-recommend .recommend-info > .recommend-name > span {line-height:9.167vw; font-size:6.111vw; font-weight:500; color:#fffb9a; letter-spacing:-0.122vw;}
+        #report-main > #section-recommend .recommend-info > .recommend-grid {display:grid; grid-template:repeat(2, 7.5vw) / auto 1fr auto; row-gap:2.222vw; margin-top:5.556vw;}
+        #report-main > #section-recommend .recommend-info > .recommend-grid > div {line-height:7.5vw; font-size:5vw; color:#fff; letter-spacing:-0.1vw;}
+        #report-main > #section-recommend .recommend-info > .recommend-grid > div:nth-child(1) {grid-area: 1 / 1 / 2 / 2;}
+        #report-main > #section-recommend .recommend-info > .recommend-grid > div:nth-child(2) {grid-area: 1 / 3 / 2 / 4;}
+        #report-main > #section-recommend .recommend-info > .recommend-grid > div:nth-child(3) {grid-area: 2 / 1 / 3 / 2;}
+        #report-main > #section-recommend .recommend-info > .recommend-grid > div:nth-child(4) {grid-area: 2 / 3 / 3 / 4;}
+
+        #report-main > #section-footer {position:absolute; right:0; bottom:0; left:0; padding:4.167vw 5.556vw; background-color:rgba(255,255,255,0.77);}
+        #report-main > #section-footer .footer-button {display:flex; justify-content: center; align-items: center; height:13.889vw; background-color:#6923af; border-radius:2.222vw; line-height:6.667vw; font-size:4.444vw; font-weight:500; color:#fff; letter-spacing:-0.089vw;} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #report-detail {position:relative; padding:0 20px;}
+        #report-detail .shadow-box {background-color:#fff; border-radius:12px; box-shadow:0 4px 15px 0 rgba(46,7,104,0.16);}
+        #report-detail:not(.save) .margintop80 {margin-top:80px;}
+        #report-detail .section-text {margin-bottom:16px; line-height:33px; font-size:22px; color:#1b1c1e; letter-spacing:-0.44px;}
+        #report-detail .section-text > b {font-weight:500;}
+        #report-detail:not(.save) .section-title {margin-bottom:20px; line-height:27px; font-size:18px; letter-spacing:-0.36px;}
+        #report-detail .ratio {display:flex; line-height:24px; font-size:14px; letter-spacing:-0.28px;}
+        #report-detail .ratio.up {color:#ef1d52;}
+        #report-detail .ratio.down {color:#3a9cff;}
+        #report-detail .ratio::before {content:""; display:block; width:24px; height:24px; background-repeat:no-repeat; background-position:center;}
+        #report-detail .ratio.up::before {background-image:url(/images/report/ic_up.svg);}
+        #report-detail .ratio.down::before {background-image:url(/images/report/ic_down.svg);}
+
+        #report-detail > #section-header {position:absolute; left:0; right:0;}
+        #report-detail > #section-header .header-button {display:block; width:64px; height:56px; background-image:url(/images/report/ic_navigation_chevron_left.svg); background-repeat:no-repeat; background-position:center center;}
+
+        #report-detail > #section-subject {padding-top:74px;}
+        #report-detail > #section-subject .subject-user {line-height:29px; font-size:20px; color:#787878; letter-spacing:-0.4px;}
+        #report-detail > #section-subject .subject-title {margin:2px 0 16px; line-height:41px; font-size:28px; color:#7b48ed; letter-spacing:-0.56px;}
+        #report-detail > #section-subject > .section-wrapper > div {margin-top:2px; line-height:20px; font-size:14px; letter-spacing:-0.28px;}
+
+        #report-detail > #section-user {margin-top:60px;}
+        #report-detail > #section-user .shadow-box {display:grid; grid-template:46px 24px 1fr / 1fr auto auto; column-gap:7px; box-sizing:border-box; height:376px; padding:21px 20px 23px;}
+        #report-detail > #section-user .user-title {margin-top:6px; line-height:27px; font-size:18px; font-weight:500; letter-spacing:-0.36px;}
+        #report-detail > #section-user .user-number {grid-area: 1 / 2 / 2 / 4; justify-self:end; line-height:45px; font-size:30px; font-weight:500; letter-spacing:-0.6px;}
+        #report-detail > #section-user .user-change {grid-area: 2 / 2 / 3 / 3;}
+        #report-detail > #section-user .user-ratio {grid-area: 2 / 3 / 3 / 4;}
+        #report-detail > #section-user .user-chart {grid-area: 3 / 1 / 4 / end;}
+
+        #report-detail > #section-ticket .shadow-box {display:grid; grid-template:27px 45px 1fr / auto auto 54fr auto auto 30fr; column-gap:4px; box-sizing:border-box; height:376px; padding:27px 20px 22px;}
+        #report-detail > #section-ticket .ticket-title {grid-area: 1 / 1 / 2 / 3; line-height:27px; font-size:18px; font-weight:500; letter-spacing:-0.36px;}
+        #report-detail > #section-ticket .ticket-title.right {grid-area: 1 / 4 / 2 / 6;}
+        #report-detail > #section-ticket .ticket-number {grid-area: 2 / 1 / 3 / 2; line-height:45px; font-size:30px; font-weight:500; letter-spacing:-0.6px;}
+        #report-detail > #section-ticket .ticket-number.right {grid-area: 2 / 4 / 3 / 5;}
+        #report-detail > #section-ticket .ticket-ratio {grid-area: 2 / 2 / 3 / 3; align-self:end; margin-bottom:6px;}
+        #report-detail > #section-ticket .ticket-ratio.right {grid-area: 2 / 5 / 3 / 6;}
+        #report-detail > #section-ticket .ticket-chart {grid-area: 3 / 1 / 4 / end;}
+
+        #report-detail > #section-active .shadow-box {display:grid; grid-template:46px 24px 1fr / 1fr auto auto; column-gap:7px; box-sizing:border-box; height:336px; padding:21px 20px 30px;}
+        #report-detail > #section-active .active-title {margin-top:6px; line-height:27px; font-size:18px; font-weight:500; letter-spacing:-0.36px;}
+        #report-detail > #section-active .active-number {grid-area: 1 / 2 / 2 / 4; justify-self:end; line-height:45px; font-size:30px; font-weight:500; letter-spacing:-0.6px;}
+        #report-detail > #section-active .active-change {grid-area: 2 / 2 / 3 / 3;}
+        #report-detail > #section-active .active-ratio {grid-area: 2 / 3 / 3 / 4;}
+        #report-detail > #section-active .active-chart {grid-area: 3 / 1 / 4 / end;}
+
+        #report-detail > #section-life .shadow-box {display:grid; grid-template:46px 24px 1fr / 1fr auto auto; column-gap:7px; box-sizing:border-box; height:336px; padding:21px 20px 30px;}
+        #report-detail > #section-life .life-title {margin-top:6px; line-height:27px; font-size:18px; font-weight:500; letter-spacing:-0.36px;}
+        #report-detail > #section-life .life-number {grid-area: 1 / 2 / 2 / 4; justify-self:end; line-height:45px; font-size:30px; font-weight:500; letter-spacing:-0.6px;}
+        #report-detail > #section-life .life-change {grid-area: 2 / 2 / 3 / 3;}
+        #report-detail > #section-life .life-ratio {grid-area: 2 / 3 / 3 / 4;}
+        #report-detail > #section-life .life-chart {grid-area: 3 / 1 / 4 / end;}
+
+        #report-detail > #section-text .text-content {margin-top:8px; line-height:27px; font-size:18px; letter-spacing:-0.36px; word-break:keep-all;}
+
+        #report-detail > #section-change {margin-top:22px;}
+        #report-detail > #section-change > .section-wrapper {display:grid; grid-template: 140px 140px 125px / 1fr 1fr; gap:10px;}
+        #report-detail > #section-change .shadow-box {box-sizing:border-box; padding:18px 20px;}
+        #report-detail > #section-change .shadow-box.another {grid-column: 1 / span 2; display:grid; grid-template:45px 24px / auto 1fr auto; align-items:center;  padding:28px 20px;}
+        #report-detail > #section-change .shadow-box.another > .change-title {grid-area:1 / 1 / 3 / 2;}
+        #report-detail > #section-change .shadow-box.another > .change-number {grid-area:1 / 3 / 2 / 4; justify-self:end; margin-top:0;}
+        #report-detail > #section-change .shadow-box.another > .change-ratio {grid-area:2 / 3 / 3 / 4; justify-self:end;}
+        #report-detail > #section-change .change-title {line-height:27px; font-size:18px; letter-spacing:-0.36px;}
+        #report-detail > #section-change .change-number {display:flex; align-items:flex-end; gap:4px; height:45px; margin-top:8px;}
+        #report-detail > #section-change .change-value {line-height:45px; font-size:30px; font-weight:500; letter-spacing:-0.6px;}
+        #report-detail > #section-change .change-unit {margin-bottom:6px; line-height:24px; font-size:16px; font-weight:500; letter-spacing:-0.32px;}
+        #report-detail > #section-change .change-ratio {display:flex; gap:1px; line-height:24px; font-size:16px; letter-spacing:-0.32px;}
+        #report-detail > #section-change .change-ratio::after {content:""; display:block; margin-left:3px;}
+        #report-detail > #section-change .change-ratio.up::after {content:"상승";}
+        #report-detail > #section-change .change-ratio.down::after {content:"하락";}
+
+        #report-detail > #section-program .program-content {height:144px; margin-top:26px;}
+
+        #report-detail > #section-rank .shadow-box {position:relative; display:grid; grid-template:32px 30px 34px 96px / 65px 1fr; gap:3px 12px; box-sizing:border-box; height:244px; margin-top:16px; padding:20px 20px 23px;}
+        #report-detail > #section-rank .rank-award {position:absolute; top:0; left:5px;}
+        #report-detail > #section-rank .rank-img {grid-area:1 / 1 / 3 / 2; width:65px; height:65px; border-radius:32.5px; background-color:#e9e9e9; background-repeat:no-repeat; background-position:center; background-size:cover;}
+        #report-detail > #section-rank .rank-name {grid-area:1 / 2 / 2 / 3; align-self:end; line-height:27px; font-size:18px; font-weight:bold; letter-spacing:-0.36px;}
+        #report-detail > #section-rank .rank-flex {grid-area:2 / 2 / 3 / 3; align-self:start; display:flex; align-items:center; gap:6px;}
+        #report-detail > #section-rank .rank-flex > div {line-height:24px; font-size:16px; letter-spacing:-0.32px;}
+        #report-detail > #section-rank .rank-flex > .rank-vertical-bar {width:1px; height:10px; margin-top:2px; background-color:#b3b6bb; border:none;}
+        #report-detail > #section-rank .rank-horizontal-bar {grid-area:3 / 1 / 4 / 3; align-self:center; height:1px; background-color:#e9e9e9; border:none;}
+        #report-detail > #section-rank .rank-grid {grid-area: 4 / 1 / 5 / 3; display:grid; grid-template: repeat(3, 24px) / 20px 1fr auto; align-items:center; gap:12px 6px;}
+        #report-detail > #section-rank .rank-key {line-height:24px; font-size:16px; color:#787878; letter-spacing:-0.32px;}
+        #report-detail > #section-rank .rank-value {justify-self:end; line-height:24px; font-size:16px; letter-spacing:-0.32px;}
+
+        #report-detail > #section-new .shadow-box {display:grid; grid-template:24px 24px / auto 1fr auto; row-gap:4px; box-sizing:border-box; height:92px; margin-top:12px; padding:20px;}
+        #report-detail > #section-new .new-name {line-height:24px; font-size:16px; font-weight:bold; letter-spacing:-0.32px;}
+        #report-detail > #section-new .new-date {grid-area: 1 / 3 / 2 / 4; line-height:20px; font-size:14px; letter-spacing:-0.28px;}
+        #report-detail > #section-new .new-flex {grid-area: 2 / 1 / 3 / 4; display:flex; align-items:center; gap:6px;}
+        #report-detail > #section-new .new-flex > div {line-height:24px; font-size:16px; letter-spacing:-0.32px;}
+        #report-detail > #section-new .new-flex > .new-vertical-bar {width:1px; height:10px; margin-top:2px; background-color:#b3b6bb; border:none;}
+        #report-detail > #section-new .additional-box {display:flex; justify-content:center; align-items:center; height:42px; margin-top:12px; background-color:#fff; border-radius:12px; box-shadow:0 4px 15px 0 rgba(46,7,104,0.16); line-height:24px; font-size:16px; font-weight:500; color:#787878; letter-spacing:-0.32px;}
+
+        #report-detail > #section-footer {margin-top:32px; padding:15px 0;}
+        #report-detail > #section-footer .footer-button {width:100%; height:50px; background-color:#6923af; border-radius:8px; line-height:24px; font-size:16px; font-weight:500; color:#fff; letter-spacing:-0.32px;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        #report-detail > #aside-background,
+        #report-detail > hr,
+        #report-detail.save > #section-header,
+        #report-detail.save > #section-footer {display:none;}
+        #report-detail.save > #aside-background {display:grid; grid-template:1fr / 1fr 432px; position:absolute; top:0; right:0; bottom:0; left:0; z-index:-1;}
+        #report-detail.save > #aside-background > .aside-left {background-color:#fff;}
+        #report-detail.save > #aside-background > .aside-right {background-color:#f5f6f8;}
+        #report-detail.save > #aside-background > img {position:absolute; top:45px; right:57px;}
+        #report-detail.save > hr {display:block; height:2px; background-color:#6923af; border:none;}
+        #report-detail.save {display:grid; grid-template:223px 2px 242px 243px 404px 2px 108px 418px / 320px 320px 0 320px; column-gap:56px; box-sizing:border-box; width:1240px; height:1754px; padding:56px;}
+        #report-detail.save .shadow-box {border:solid 1px #e9e9e9; box-shadow:unset;}
+
+        #report-detail.save > #section-subject {grid-area: 1 / 1 / 2 / 3; padding-top:0;}
+        #report-detail.save > #section-subject > .section-wrapper {display:grid; grid-template:45px 74px 34px 33px / auto auto 1fr; gap:7px 36px;}
+        #report-detail.save > #section-subject .subject-user {grid-area: 1 / 1 / 2 / 4; line-height:45px; font-size:30px; letter-spacing:-0.6px;}
+        #report-detail.save > #section-subject .subject-title {grid-area: 2 / 1 / 4 / 4; margin:0; line-height:74px; font-size:50px; font-weight:500; color:#000; letter-spacing:-1px;}
+        #report-detail.save > #section-subject > .section-wrapper > div {margin-top:0; line-height:33px; font-size:22px; letter-spacing:-0.44px;}
+
+        #report-detail.save > #section-text {grid-area: 3 / 1 / 4 / 2; margin-top:33px;}
+        #report-detail.save > #section-text .section-title {line-height:36px; font-size:24px; color:#6923af; letter-spacing:-0.48px;}
+        #report-detail > #section-text .text-content {margin-top:12px;}
+
+        #report-detail.save > #section-change {grid-area: 3 / 2 / 5 / 3; margin-top:30px;}
+        #report-detail.save > #section-change > .section-wrapper {grid-template: repeat(3, 125px) / 1fr 1fr;}
+        #report-detail.save > #section-change .shadow-box {padding:16px 14px;}
+        #report-detail.save > #section-change .shadow-box.another {padding:26px 18px;}
+        #report-detail.save > #section-change .shadow-box.another > .change-number {height:45px;}
+        #report-detail.save > #section-change .shadow-box.another .change-value,
+        #report-detail.save > #section-change .shadow-box.another .change-unit {line-height:45px; font-size:30px;}
+        #report-detail.save > #section-change .change-number {gap:2px; height:33px; margin:8px 0 1px;}
+        #report-detail.save > #section-change .change-value {line-height:33px; font-size:22px; letter-spacing:-0.44px;}
+        #report-detail.save > #section-change .change-unit {margin-bottom:0; line-height:33px; font-size:22px; letter-spacing:-0.44px;}
+
+        #report-detail.save > #section-program {grid-area: 4 / 1 / 5 / 2;}
+        #report-detail.save > #section-program .section-title {line-height:27px; font-size:18px; font-weight:500; letter-spacing:-0.36px;}
+        #report-detail.save > #section-program .program-content {margin-top:12px;}
+
+        #report-detail.save > #section-user {grid-area: 5 / 1 / 8 / 2; margin-top:0;}
+        #report-detail.save > #section-user .shadow-box {padding: 20px 18px 22px;}
+
+        #report-detail.save > #section-ticket {grid-area: 5 / 2 / 8 / 3;}
+        #report-detail.save > #section-ticket .shadow-box {padding:26px 18px 21px;}
+
+        #report-detail.save > #section-active {grid-area: 8 / 1 / 9 / 2;}
+        #report-detail.save > #section-active .shadow-box {padding:20px 18px 29px;}
+
+        #report-detail.save > #section-life {grid-area: 8 / 2 / 9 / 3;}
+        #report-detail.save > #section-life .shadow-box {padding:20px 18px 29px;}
+
+        #report-detail.save > #section-rank {grid-area: 3 / 4 / 6 / 5;}
+        #report-detail.save > #section-rank .shadow-box {padding:19px 18px 22px;}
+
+        #report-detail.save > #section-new {grid-area: 7 / 4 / 9 / 5;}
+        #report-detail.save > #section-new .shadow-box {padding: 19px;}
+        #report-detail.save > #section-new .additional-box {border:solid 1px #e9e9e9; box-shadow:unset;}
+
+        #report-detail.save > #section-rank .section-title,
+        #report-detail.save > #section-new .section-title {margin:12px 0 20px; line-height:36px; font-size:24px; color: #6923af; letter-spacing:-0.48px;}
+
+
+        #report-detail.save > .hr1 {grid-area: 2 / 1 / 3 / 3;}
+
+        #report-detail.save > .hr2 {grid-area: 2 / 4 / 3 / 5;}
+
+        #report-detail.save > .hr3 {grid-area: 6 / 4 / 7 / 5;}
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        
+        <!-- @* 차트 CDN *@ -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.4.1/echarts.min.js"></script>
+        
+        <!-- @* 이미지 저장 *@ -->
+        <!-- <script src="/Scripts/html2canvas.min.js"></script> -->
+        <!-- <script src="/Scripts/html2canvas.js"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js" integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+        <!-- @* PDF 저장 *@ -->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script> -->
+        
+        <!-- <main id="report-detail" class="save"> -->
+        <main id="report-detail">
+            <section id="section-header">
+                <div class="section-wrapper">
+                    <a class="header-button" href="/TIONCARE/TIONCAREC010/COMPANY_REPORT_MAIN"></a>
+                </div>
+            </section>
+        
+            <section id="section-subject">
+                <div class="section-wrapper">
+                    <h2 class="subject-user">(주)휴먼아이티솔루션</h2>
+                    <h1 class="subject-title">7월 티온케어 리포트</h1>
+                    <div class="subject-date">해당년월 : <span>2023.07</span></div>
+                    <div class="subject-number">법인고객 : <span>200</span>명</div>
+                </div>
+            </section>
+            
+            <section id="section-user">
+                <div class="section-wrapper">
+                    <p class="section-text">이용자 수가 6월대비 50명,<br>
+                        <b>약 16% 증가</b> 하였습니다.</p>
+                    <div class="shadow-box">
+                        <h3 class="user-title">7월 이용자 수</h3>
+                        <div class="user-number">205명</div>
+                        <div class="user-change ratio up">50명</div>
+                        <div class="user-ratio ratio up">16%</div>
+                        <div id="user-chart" class="user-chart"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="section-ticket" class="margintop80">
+                <div class="section-wrapper">
+                    <p class="section-text">이용권 이용자가 6월 대비<br>
+                        <b>약 150% 증가</b> 하였습니다.</p>
+                    <div class="shadow-box">
+                        <h3 class="ticket-title left">티온XR</h3>
+                        <div class="ticket-number left">250</div>
+                        <div class="ticket-ratio left ratio up">16%</div>
+                        <h3 class="ticket-title right">샐러드</h3>
+                        <div class="ticket-number right">80</div>
+                        <div class="ticket-ratio right ratio up">56%</div>
+                        <div id="ticket-chart" class="ticket-chart"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="section-active" class="margintop80">
+                <div class="section-wrapper">
+                    <p class="section-text">임직원 분들의 평균 운동량이<br>
+                        <b>12% 향상</b> 되었습니다.</p>
+                    <div class="shadow-box">
+                        <h3 class="active-title">평균 운동량</h3>
+                        <div class="active-number">205Kcal</div>
+                        <div class="active-change ratio up">50</div>
+                        <div class="active-ratio ratio up">16%</div>
+                        <div id="active-chart" class="active-chart"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="section-life" class="margintop80">
+                <div class="section-wrapper">
+                    <p class="section-text">티온라이프가<br>
+                        <b>4% 개선</b> 되었습니다.</p>
+                    <div class="shadow-box">
+                        <h3 class="life-title">티온라이프</h3>
+                        <div class="life-number">70점</div>
+                        <div class="life-ratio ratio up">4%</div>
+                        <div id="life-chart" class="life-chart"></div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="section-text" class="margintop80">
+                <div class="section-wrapper">
+                    <h3 class="section-title">주목할 변화</h3>
+                    <p class="text-content">6월과 비교하여 7월 이용자 수 및 이용권 사용수가 증가하였고, 이에따라 운동량이 증가 하여 티온라이프가 8% 개선되었음을 확인하였습니다.</p>
+                </div>
+            </section>
+            
+            <section id="section-change">
+                <div class="section-wrapper">
+                    <div class="shadow-box">
+                        <div class="change-title">이용자수</div>
+                        <div class="change-number">
+                            <div class="change-value">50</div>
+                            <div class="change-unit">명</div>
+                        </div>
+                        <div class="change-ratio ratio up">50%</div>
+                    </div>
+                    <div class="shadow-box">
+                        <div class="change-title">티온XR 이용</div>
+                        <div class="change-number">
+                            <div class="change-value">4</div>
+                            <div class="change-unit">명</div>
+                        </div>
+                        <div class="change-ratio ratio up">50%</div>
+                    </div>
+                    <div class="shadow-box">
+                        <div class="change-title">샐러드 이용</div>
+                        <div class="change-number">
+                            <div class="change-value">4</div>
+                            <div class="change-unit">명</div>
+                        </div>
+                        <div class="change-ratio ratio down">50%</div>
+                    </div>
+                    <div class="shadow-box">
+                        <div class="change-title">평균 운동량</div>
+                        <div class="change-number">
+                            <div class="change-value">205</div>
+                            <div class="change-unit">Kcal</div>
+                        </div>
+                        <div class="change-ratio ratio up">16%</div>
+                    </div>
+                    <div class="shadow-box another">
+                        <div class="change-title">평균 티온라이프<br>점수</div>
+                        <div class="change-number">
+                            <div class="change-value">70</div>
+                            <div class="change-unit">점</div>
+                        </div>
+                        <div class="change-ratio ratio up">4%</div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="section-program" class="margintop80">
+                <div class="section-wrapper">
+                    <h3 class="section-title">주요 이용 프로그램</h3>
+                    <div id="program-chart" class="program-content"></div>
+                </div>
+            </section>
+            
+            <section id="section-rank" class="margintop80">
+                <div class="section-wrapper">
+                    <h3 class="section-title">7월 이용자 랭킹</h3>
+                    <div class="shadow-box">
+                        <img class="rank-award" src="/images/report/ic_gold.svg" alt="금메달 아이콘">
+                        <div class="rank-img" style="background-image:url(/images/report/bg-ch.png)"></div>
+                        <div class="rank-name">홍길동</div>
+                        <div class="rank-flex">
+                            <div class="rank-depart">헬스케어사업부</div>
+                            <hr class="rank-vertical-bar">
+                            <div class="rank-level">매니저</div>
+                        </div>
+                        <hr class="rank-horizontal-bar">
+                        <div class="rank-grid">
+                            <img src="/images/report/ic_rank_data.svg" alt="총 이용 수 아이콘">
+                            <div class="rank-key">총 이용 수</div>
+                            <div class="rank-value"><span>10</span>회</div>
+                            <img src="/images/report/ic_rank_kcal.svg" alt="총 운동량 아이콘">
+                            <div class="rank-key">총 운동량</div>
+                            <div class="rank-value"><span>3,620</span>Kcal</div>
+                            <img src="/images/report/ic_rank_time.svg" alt="총 운동시간 아이콘">
+                            <div class="rank-key">총 운동시간</div>
+                            <div class="rank-value"><span>290</span>min</div>
+                        </div>
+                    </div>
+                    <div class="shadow-box">
+                        <img class="rank-award" src="/images/report/ic_silver.svg" alt="은메달 아이콘">
+                        <div class="rank-img" style="background-image:url(/images/report/bg-ch.png)"></div>
+                        <div class="rank-name">홍길동</div>
+                        <div class="rank-flex">
+                            <div class="rank-depart">헬스케어사업부</div>
+                            <hr class="rank-vertical-bar">
+                            <div class="rank-level">매니저</div>
+                        </div>
+                        <hr class="rank-horizontal-bar">
+                        <div class="rank-grid">
+                            <img src="/images/report/ic_rank_data.svg" alt="총 이용 수 아이콘">
+                            <div class="rank-key">총 이용 수</div>
+                            <div class="rank-value"><span>10</span>회</div>
+                            <img src="/images/report/ic_rank_kcal.svg" alt="총 운동량 아이콘">
+                            <div class="rank-key">총 운동량</div>
+                            <div class="rank-value"><span>3,620</span>Kcal</div>
+                            <img src="/images/report/ic_rank_time.svg" alt="총 운동시간 아이콘">
+                            <div class="rank-key">총 운동시간</div>
+                            <div class="rank-value"><span>290</span>min</div>
+                        </div>
+                    </div>
+                    <div class="shadow-box">
+                        <img class="rank-award" src="/images/report/ic_copper.svg" alt="동메달 아이콘">
+                        <div class="rank-img" style="background-image:url(/images/report/bg-ch.png)"></div>
+                        <div class="rank-name">홍길동</div>
+                        <div class="rank-flex">
+                            <div class="rank-depart">헬스케어사업부</div>
+                            <hr class="rank-vertical-bar">
+                            <div class="rank-level">매니저</div>
+                        </div>
+                        <hr class="rank-horizontal-bar">
+                        <div class="rank-grid">
+                            <img src="/images/report/ic_rank_data.svg" alt="총 이용 수 아이콘">
+                            <div class="rank-key">총 이용 수</div>
+                            <div class="rank-value"><span>10</span>회</div>
+                            <img src="/images/report/ic_rank_kcal.svg" alt="총 운동량 아이콘">
+                            <div class="rank-key">총 운동량</div>
+                            <div class="rank-value"><span>3,620</span>Kcal</div>
+                            <img src="/images/report/ic_rank_time.svg" alt="총 운동시간 아이콘">
+                            <div class="rank-key">총 운동시간</div>
+                            <div class="rank-value"><span>290</span>min</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+                    
+            <section id="section-new" class="margintop80">
+                <div class="section-wrapper">
+                    <h3 class="section-title">7월 신규 이용자</h3>
+                    <div class="shadow-box">
+                        <div class="new-name">홍길동</div>
+                        <div class="new-date">2023.07.01</div>
+                        <div class="new-flex">
+                            <div class="new-depart">헬스케어사업부</div>
+                            <hr class="new-vertical-bar">
+                            <div class="new-level">매니저</div>
+                        </div>
+                    </div>
+                    <div class="shadow-box">
+                        <div class="new-name">홍길동</div>
+                        <div class="new-date">2023.07.01</div>
+                        <div class="new-flex">
+                            <div class="new-depart">헬스케어사업부</div>
+                            <hr class="new-vertical-bar">
+                            <div class="new-level">매니저</div>
+                        </div>
+                    </div>
+                    <div class="shadow-box">
+                        <div class="new-name">홍길동</div>
+                        <div class="new-date">2023.07.01</div>
+                        <div class="new-flex">
+                            <div class="new-depart">헬스케어사업부</div>
+                            <hr class="new-vertical-bar">
+                            <div class="new-level">매니저</div>
+                        </div>
+                    </div>
+                    <div class="shadow-box">
+                        <div class="new-name">홍길동</div>
+                        <div class="new-date">2023.07.01</div>
+                        <div class="new-flex">
+                            <div class="new-depart">헬스케어사업부</div>
+                            <hr class="new-vertical-bar">
+                            <div class="new-level">매니저</div>
+                        </div>
+                    </div>
+                    <div class="additional-box">외 10명</div>
+                </div>
+            </section>
+            
+            <section id="section-footer">
+                <div class="section-wrapper">
+                    <button class="footer-button" type="button">리포트 저장하기</button>
+                </div>
+            </section>
+        
+            <hr class="hr1">
+            <hr class="hr2">
+            <hr class="hr3">
+            <aside id="aside-background">
+                <div class="aside-left"></div>
+                <div class="aside-right"></div>
+                <img src="/images/report/logo_45px.svg" alt="티온케어 로고">
+            </aside>
+        </main>
+        
+        <script>
+        (function(){
+            /* 차트 */
+            let userDataSet = [
+                { "key": "4월", "전체인원": 81, "이용자 수": 20 },
+                { "key": "5월", "전체인원": 84, "이용자 수": 34 },
+                { "key": "6월", "전체인원": 49, "이용자 수": 16 },
+                { "key": "7월", "전체인원": 70, "이용자 수": 54 }
+            ];
+        
+            let ticketDataSet = [
+                { "key": "4월", "티온XR": 81, "샐러드": 20 },
+                { "key": "5월", "티온XR": 84, "샐러드": 34 },
+                { "key": "6월", "티온XR": 49, "샐러드": 16 },
+                { "key": "7월", "티온XR": 70, "샐러드": 54 }
+            ];
+        
+            let activeDataSet = [
+                { "key": "4월", "value": 81 },
+                { "key": "5월", "value": 127 },
+                { "key": "6월", "value": 242 },
+                { "key": "7월", "value": 274 }
+            ];
+        
+            let lifeDataSet = [
+                { "key": "4월", "value": 50 },
+                { "key": "5월", "value": 74 },
+                { "key": "6월", "value": 84 },
+                { "key": "7월", "value": 89 }
+            ];
+        
+            let programDataSet = [
+                { "key": "자동 프로그램", "value": 12 },
+                { "key": "다이어트 acTION", "value": 23 },
+                { "key": "근육업 acTION", "value": 10 },
+                { "key": "라인핏 acTION", "value": 4 },
+                { "key": "점심시간 acTION", "value": 31 }
+            ];
+        
+            render();
+        
+            function render(save, resize){
+        
+                /*****************************************************************/
+                /******************** 이용자 차트 ********************/
+                const userChartBox = document.getElementById("user-chart");
+                const userChart = echarts.init(userChartBox);
+                let userChartOption = {
+                    dataset: {
+                        source: userDataSet
+                    },
+                    grid: {
+                        top:30,
+                        right:0,
+                        bottom:81,
+                        left:0
+                    },
+                    legend: {
+                        right: 0,
+                        bottom: 0,
+                        align: 'right',
+                        itemGap: 16,
+                        itemWidth: 13,
+                        itemHeight: 13,
+                        icon: 'roundRect',
+                        textStyle: {
+                            color:'#000',
+                            fontFamily:'NotoSansKR',
+                            fontSize: 14,
+                            lineHeight: 20
+        
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        offset: 10,
+                        axisLine: {show: false},
+                        axisTick: {show: false},
+                        axisLabel: {
+                            margin: 0,
+                            lineHeight: 24,
+                            fontFamily: 'NotoSansKR',
+                            fontSize: 16,
+                            color: '#787878',
+                        }
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show: true,
+                        min: 0,
+                        splitLine: {
+                            show: true,
+                            lineStyle: {
+                                color:'#e9e9e9',
+                                width:1,
+                                type:'solid'
+                            }
+                        },
+                    },
+                    series: [
+                        {
+                            type: 'bar',
+                            barWidth: 14,
+                            barGap: 6/14,
+                            itemStyle: {
+                                color: '#c5cfdf',
+                                borderRadius: 4
+                            },
+                            label: {
+                                show: true,
+                                position: 'top',
+                                distance: 3,
+                                fontFamily: 'Roboto',
+                                fontSize: 15,
+                                fontWeight: 500,
+                                color: 'inherit',
+                            },
+                        },
+                        {
+                            type: 'bar',
+                            barWidth: 14,
+                            itemStyle: {
+                                color: '#7b48ed',
+                                borderRadius: 4
+                            },
+                            label: {
+                                show: true,
+                                position: 'top',
+                                distance: 3,
+                                fontFamily: 'Roboto',
+                                fontSize: 15,
+                                fontWeight: 500,
+                                color: 'inherit',
+                            },
+                        }
+                    ],
+                };
+                userChart.setOption(userChartOption);
+                /******************** 이용자 차트 ********************/
+                /*****************************************************************/
+        
+        
+                /*****************************************************************/
+                /******************** 이용권 차트 ********************/
+                const ticketChartBox = document.getElementById("ticket-chart");
+                const ticketChart = echarts.init(ticketChartBox);
+                let ticketChartOption = {
+                    dataset: {
+                        source: ticketDataSet
+                    },
+                    grid: {
+                        top:30,
+                        right:20,
+                        bottom:81,
+                        left:20,
+                    },
+                    legend: {
+                        right: 0,
+                        bottom: 0,
+                        align: 'right',
+                        itemGap: 16,
+                        itemWidth: 13,
+                        itemHeight: 13,
+                        icon: 'roundRect',
+                        textStyle: {
+                            color:'#000',
+                            fontFamily:'NotoSansKR',
+                            fontSize: 14,
+                            lineHeight: 20
+        
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        offset: 10,
+                        axisLine: {show:false},
+                        axisTick: {show: false},
+                        axisLabel: {
+                            margin: 0,
+                            lineHeight: 24,
+                            fontFamily: 'NotoSansKR',
+                            fontSize: 16,
+                            color: '#787878',
+                        },
+                        splitLine: {
+                            show: true,
+                            lineStyle: {
+                                color:'#e9e9e9',
+                                width:1,
+                                type:'solid'
+                            }
+                        },
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show: false,
+                        min: 0
+                    },
+                    series: [
+                        {
+                            type: 'line',
+                            colorBy: 'data',
+                            symbolSize:10.5,
+                            itemStyle: {
+                                color: '#7b48ed',
+                                shadowBlur: 1,
+                                shadowColor: '#7b48ed',
+                            },
+                            lineStyle: {
+                                color:'#7b48ed',
+                                width: 3
+                            },
+                            label: {
+                                show: true,
+                                distance: 3,
+                                fontFamily: 'Roboto',
+                                fontSize: 15,
+                                fontWeight: 700,
+                                color: 'inherit',
+                            },
+                        },
+                        {
+                            type: 'line',
+                            colorBy: 'data',
+                            symbolSize:10.5,
+                            itemStyle: {
+                                color: '#c48fff',
+                                shadowBlur: 1,
+                                shadowColor: '#c48fff',
+                            },
+                            lineStyle: {
+                                color:'#c48fff',
+                                width: 3
+                            },
+                            label: {
+                                show: true,
+                                distance: 3,
+                                fontFamily: 'Roboto',
+                                fontSize: 15,
+                                fontWeight: 700,
+                                color: 'inherit',
+                            },
+                        }
+                    ],
+                };
+                let xrCnt = 0;
+                for(let obj of ticketDataSet) {
+                    if(obj['티온XR'] - obj['샐러드'] > 0) xrCnt++;
+                }
+                if(xrCnt >= ticketDataSet.length/2) {
+                    ticketChartOption.series[0].label.position = 'top';
+                    ticketChartOption.series[1].label.position = 'bottom';
+                } else {
+                    ticketChartOption.series[0].label.position = 'bottom';
+                    ticketChartOption.series[1].label.position = 'top';
+                }
+                ticketChart.setOption(ticketChartOption);
+                /******************** 이용권 차트 ********************/
+                /*****************************************************************/
+        
+        
+                /*****************************************************************/
+                /******************** 평균 운동량 차트 ********************/
+                const activeChartBox = document.getElementById("active-chart");
+                const activeChart = echarts.init(activeChartBox);
+                let activeChartOption = {
+                    dataset: {
+                        source: activeDataSet
+                    },
+                    grid: {
+                        top:30,
+                        right:20,
+                        bottom:34,
+                        left:20,
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        offset: 10,
+                        axisLine: {show:false},
+                        axisTick: {show: false},
+                        axisLabel: {
+                            margin: 0,
+                            lineHeight: 24,
+                            fontFamily: 'NotoSansKR',
+                            fontSize: 16,
+                            color: '#787878',
+                        },
+                        splitLine: {
+                            show: true,
+                            lineStyle: {
+                                color:'#e9e9e9',
+                                width:1,
+                                type:'solid'
+                            }
+                        },
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show: false,
+                        min: 0
+                    },
+                    series: [
+                        {
+                            type: 'line',
+                            colorBy: 'data',
+                            symbolSize:10.5,
+                            itemStyle: {
+                                color: '#7b48ed',
+                                shadowBlur: 1,
+                                shadowColor: '#7b48ed',
+                            },
+                            lineStyle: {
+                                color:'#7b48ed',
+                                width: 3
+                            },
+                            label: {
+                                show: true,
+                                distance: 3,
+                                fontFamily: 'Roboto',
+                                fontSize: 15,
+                                fontWeight: 700,
+                                color: 'inherit',
+                            },
+                        }
+                    ],
+                };
+                activeChart.setOption(activeChartOption);
+                /******************** 평균 운동량 차트 ********************/
+                /*****************************************************************/
+        
+        
+                /*****************************************************************/
+                /******************** 티온라이프 차트 ********************/
+                const lifeChartBox = document.getElementById("life-chart");
+                const lifeChart = echarts.init(lifeChartBox);
+                let lifeChartOption = {
+                    dataset: {
+                        source: lifeDataSet
+                    },
+                    grid: {
+                        top:30,
+                        right:20,
+                        bottom:34,
+                        left:20,
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        offset: 10,
+                        axisLine: {show:false},
+                        axisTick: {show: false},
+                        axisLabel: {
+                            margin: 0,
+                            lineHeight: 24,
+                            fontFamily: 'NotoSansKR',
+                            fontSize: 16,
+                            color: '#787878',
+                        },
+                        splitLine: {
+                            show: true,
+                            lineStyle: {
+                                color:'#e9e9e9',
+                                width:1,
+                                type:'solid'
+                            }
+                        },
+                    },
+                    yAxis: {
+                        type: 'value',
+                        show: false,
+                        min: 0
+                    },
+                    series: [
+                        {
+                            type: 'line',
+                            colorBy: 'data',
+                            symbolSize:10.5,
+                            itemStyle: {
+                                color: '#7b48ed',
+                                shadowBlur: 1,
+                                shadowColor: '#7b48ed',
+                            },
+                            lineStyle: {
+                                color:'#7b48ed',
+                                width: 3
+                            },
+                            label: {
+                                show: true,
+                                distance: 3,
+                                fontFamily: 'Roboto',
+                                fontSize: 15,
+                                fontWeight: 700,
+                                color: 'inherit',
+                            },
+                        }
+                    ],
+                };
+                lifeChart.setOption(lifeChartOption);
+                /******************** 티온라이프 차트 ********************/
+                /*****************************************************************/
+        
+        
+                /*****************************************************************/
+                /******************** 주요 이용 프로그램 차트 ********************/
+                const programChartBox = document.getElementById("program-chart");
+                const programChart = echarts.init(programChartBox);
+                let programChartOption = {
+                    dataset: {
+                        source: programDataSet
+                    },
+                    color: ['#a0cef5', '#92f0f5', '#f4dc59', '#f0b99c', '#f5aae7'],
+                    grid: {
+                        top:30,
+                        right:20,
+                        bottom:34,
+                        left:20,
+                    },
+                    legend: {
+                        top: 'center',
+                        right: 0,
+                        orient: 'vertical',
+                        padding: 0,
+                        itemWidth: 16,
+                        itemHeight: 16,
+                        itemGap: 6,
+                        itemStyle: {
+                            borderWidth:0
+                        },
+                        textStyle: {
+                            height:24,
+                            lineHeight: 24,
+                            fontFamily: 'NotoSansKR',
+                            fontSize: 16,
+                            color: '#000'
+                        }
+                    },
+                    series: [
+                        {
+                            type: 'pie',
+                            center: [78, 72],
+                            radius: ['60%', '100%'],
+                            label: {show: false},
+                            labelLine: {show: false},
+                            itemStyle: {
+                                borderRadius: 4,
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            },
+                            emphasis: {
+                                disabled: true
+                            }
+                        }
+                    ],
+                };
+                programChart.setOption(programChartOption);
+                /******************** 주요 이용 프로그램 차트 ********************/
+                /*****************************************************************/
+                
+                window.addEventListener('resize',function(){
+                    userChart.resize();
+                    ticketChart.resize();
+                    activeChart.resize();
+                    lifeChart.resize();
+                    programChart.resize();
+                })
+        
+                if(resize) {
+                    userChart.resize();
+                    ticketChart.resize();
+                    activeChart.resize();
+                    lifeChart.resize();
+                    programChart.resize();
+                }
+        
+                if(save) {
+                    setTimeout(function(){
+                        saveImg();
+                    },200)
+                }
+            }
+        
+            /* 이미지 저장 */
+            const captureDiv = document.getElementById('report-detail');
+            const downloadButton = document.querySelector('.footer-button');
+        
+            downloadButton.addEventListener('click', () => {
+                captureDiv.className = "save";
+                render(1, 1);
+            });
+        
+            const saveImg = () => {
+        
+                html2canvas(captureDiv, {
+                    scale: 1
+                    // allowTain: true,
+                    // useCORS: true
+                }).then(canvas => {
+                    const deviceType = navigator.userAgent.toLowerCase();
+                    const contentDataURL = canvas.toDataURL('image/png');
+                    const fileName = `7월 티온케어 리포트_${new Date().getTime()}.png`;
+        
+                    console.log(deviceType);
+                    
+                    // if(deviceType.indexOf('iphone') > -1 || deviceType.indexOf('ipad') > -1 || deviceType.indexOf('ipod') > -1) {
+                    //     console.log('ios');
+                    //     // const imgWidth = 210;
+                    //     // const pageHeight = 295;
+                    //     // const imgHeight = canvas.height * imgWidth / canvas.width;
+                    //     // let heightLeft = imgHeight;
+                    //     // let pdf = new jspdf('p', 'mm', 'a4', true); // A4 size page of PDF
+                    //     // let position = 0;
+        
+                    //     // pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight, undefined,'FAST');
+                    //     // heightLeft -= pageHeight;
+        
+                    //     // while (heightLeft >= 0) {
+                    //     //     position = heightLeft - imgHeight;
+                    //     //     pdf.addPage();
+                    //     //     pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight, undefined,'FAST')
+                    //     //     heightLeft -= pageHeight;
+                    //     // }
+                    //     // pdf.save(fileName); // Generated PDF
+        
+                    //     // // if(screen.width < 1024) {
+                    //     // //     document.getElementById("viewport").setAttribute("content", "width=device-width, initial-scale=1");
+                    //     // // }
+                    // } else {
+                        const link = document.createElement('a');
+        
+                        link.href = contentDataURL;
+                        link.download = fileName;
+        
+                        document.body.appendChild(link);
+                        
+                        link.click();
+        
+                        document.body.removeChild(link);
+                    // }
+        
+                    captureDiv.classList.remove('save');
+        
+                    render(0, 1);
+                });
+            }
+        }());
+        </script>
+    </div>
+</body>
+</html>
